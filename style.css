@@ -10,6 +10,11 @@
     --sm-font-size: 8px;
 }
 
+html, body {
+    height: 100vh;
+    width: 100vw;
+}
+
 body {
     font-family: 'Muli';
     font-size: var(--font-size);
@@ -19,26 +24,25 @@ body {
 
 .swiper-container {
     height: 100%;
-    width: 100%;
 }
 
-.swiper-slide {
-    height: 100%;
-}
+/* header */
 
 .header {
     display: flex;
+    flex-direction: column;
     height: 100%;
     width: 100%;
-    align-items: center;
+    align-items: flex-start;
+    justify-content: center;
+    color: var(--text-color);
+    font-size: var(--title-font-size);
     background-color: var(--secondary-color);
+    text-transform: uppercase;
 }
 
-.header .title {
-    padding: 2rem;
-    font-size: var(--title-font-size);
-    text-transform: uppercase;
-    color: var(--text-color);
+.header > div { 
+    padding: 0 16rem;
 }
 
 .header .title h1 {
