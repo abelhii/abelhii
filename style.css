@@ -1,5 +1,4 @@
 /* https://paletton.com/#uid=34b0u0kvou7jGB6oXvWxjnMDviB */
-
 :root {
     --primary-color: #3317A6;
     --secondary-color: #FEFB38;
@@ -38,7 +37,6 @@ body {
     color: var(--text-color);
     font-size: var(--title-font-size);
     background-color: var(--secondary-color);
-    text-transform: uppercase;
 }
 
 .header > div { 
@@ -46,6 +44,6 @@ body {
 }
 
 .header .title h1 {
+    font-family: 'Comfortaa', cursive;
     margin: 0px;
-    font-weight: 500;
 }
