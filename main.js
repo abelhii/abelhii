@@ -1,11 +1,21 @@
 import { loadHtml, getRandomInt, isVowel } from './modules/helper.js'
 
 // CONSTS
-const adjectives = ["irish", "malaysian", "wonderful", "agreeable", "dumb"]
-const nouns = ["nerd", "designer", "coder", "pig", "gamer", "developer", "monkey"];
+const adjectives = ["irish", "malaysian", "wonderful", "affectionate", "dumb", "adventurous", "fierce"]
+const nouns = ["nerd", "designer", "coder", "pig", "gamer", "developer", "programmer", "monkey", "robot"];
+
+// INIT SWIPER
+let swiper = new Swiper('.swiper-container', {
+    direction: 'vertical',
+    parallax: true,
+    speed: 600,
+    mousewheel: {
+        releaseOnEdges: true
+    }
+});
 
 // LOAD HTML
-loadHtml('./header/header.html', '.header').then(() => {
+loadHtml('./sections/header/header.html', '.header').then(() => {
     // Loop subtitles
     let subtitle = document.getElementsByClassName('subtitle')[0];
     setInterval(() => {
@@ -15,4 +25,15 @@ loadHtml('./header/header.html', '.header').then(() => {
         let description = `${subject} ${adjective} ${noun}`;
         subtitle.innerHTML = description;
     }, 1600);
+
+    // Listener to scroll down button
+    let scrollDownButton = document.getElementsByClassName('scrollDownButton')[0];
+    scrollDownButton.onclick = function (ev) {
+        swiper.slideNext();
+    }
 });
+
+loadHtml('./sections/about/about.html', '.about');
+loadHtml('./sections/portfolio/portfolio.html', '.portfolio');
+loadHtml('./sections/contact/contact.html', '.contact');
+

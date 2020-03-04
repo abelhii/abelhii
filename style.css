@@ -1,3 +1,8 @@
+@import './sections/header/header.css';
+@import './sections/about/about.css';
+@import './sections/portfolio/portfolio.css';
+@import './sections/contact/contact.css';
+
 /* https://paletton.com/#uid=34b0u0kvou7jGB6oXvWxjnMDviB */
 :root {
     --primary-color: #3317A6;
@@ -7,12 +12,13 @@
     --text-color: #444444;
     --inverse-text-color: #dddddd;
     --title-font-size: 48px;
-    --lg-font-size: 24px;
-    --font-size: 16px;
-    --sm-font-size: 8px;
+    --lg-font-size: 32px;
+    --font-size: 24px;
+    --sm-font-size: 16px;
 }
 
-html, body {
+html,
+body {
     height: 100vh;
     width: 100vw;
 }
@@ -24,54 +30,61 @@ body {
     margin: 0;
 }
 
+.title {
+    font-size: var(--title-font-size);
+}
+
+.subtitle {
+    font-size: var(--lg-font-size);
+}
+
+.content {
+    font-size: var(--lg-font-size);
+}
+
 /* swiperjs */
 
 .swiper-container {
     height: 100%;
 }
 
-/* header */
-
-.header {
-    display: flex;
-    flex-direction: column;
-    height: 100%;
-    width: 100%;
-    align-items: flex-start;
-    justify-content: center;
-    font-size: var(--title-font-size);
-    background-color: var(--secondary-color);
+.swiper-slide>div {
+    padding: 8rem 16rem;
 }
 
-.header > div { 
-    padding: 0 16rem;
+
+/* MEDIA QUERIES */
+
+/* For laptops and lower */
+@media (max-width: 1024px) {
+    .swiper-slide>div {
+        padding: 4rem 8rem;
+    }
 }
 
-.header .title h1 {
-    font-family: 'Comfortaa', cursive;
-    margin: 0px;
+/* For tablets and lower */
+@media (max-width: 768px) {
+    .title {
+        font-size: var(--lg-font-size);
+    }
+
+    .subtitle {
+        font-size: var(--lg-font-size);
+    }
+
+    .content {
+        font-size: var(--font-size);
+    }
+
+    .swiper-slide>div {
+        padding: 2rem 4rem;
+    }
 }
 
-/* about */
-
-.about {
-    display: grid;
-    color: var(--inverse-text-color);
-    background-color: var(--primary-color);
+/* For phones and lower */
+@media (max-width: 425px) {
+    /* swiperjs */
+    .swiper-slide>div {
+        padding: 1rem 2rem;
+    }
 }
-
-/* portfolio */
-
-.portfolio {
-    display: grid;
-    color: var(--inverse-text-color);
-    background-color: var(--third-color);
-}
-
-/* contact */
-
-.contact {
-    display: grid;
-    background-color: var(--fourth-color);
-}
-

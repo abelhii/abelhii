@@ -1,6 +1,11 @@
 <!DOCTYPE html>
-
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
 <head>
+    <link rel="apple-touch-icon" sizes="180x180" href="assets/favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon/favicon-16x16.png">
+    <link rel="manifest" href="assets/favicon/site.webmanifest">
+
     <link href="https://fonts.googleapis.com/css?family=Muli|Playfair+Display|Quicksand|Comfortaa&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 
@@ -13,30 +18,15 @@
     <div class="swiper-container">
         <div class="swiper-wrapper">
             <div class="swiper-slide header"></div>
-            <div class="swiper-slide about">Slide 2</div>
-            <div class="swiper-slide portfolio">Slide 3</div>
-            <div class="swiper-slide contact">Slide 4</div>
+            <div class="swiper-slide about"></div>
+            <div class="swiper-slide portfolio"></div>
+            <div class="swiper-slide contact"></div>
         </div>
-        <div class="swiper-pagination"></div>
     </div>
 
 
     <!-- SwiperJS -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.5.1/js/swiper.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.5.1/js/swiper.min.js"></script>
-    <script>
-        var swiper = new Swiper('.swiper-container', {
-            direction: 'vertical',
-            parallax: true,
-            speed: 900,
-            mousewheel: {
-                releaseOnEdges: true
-            },
-            pagination: {
-                el: '.swiper-pagination',
-                clickable: true
-            }
-        });
-    </script>
     <script type="module" src="main.js"></script>
 </body>

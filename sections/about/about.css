@@ -1,0 +1,5 @@
+.about {
+    display: grid;
+    color: var(--inverse-text-color);
+    background-color: var(--primary-color);
+}
