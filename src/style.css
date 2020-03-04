@@ -2,13 +2,14 @@
 @import './sections/about/about.css';
 @import './sections/portfolio/portfolio.css';
 @import './sections/contact/contact.css';
+@import './styles/helpers.css';
 
 /* https://paletton.com/#uid=34b0u0kvou7jGB6oXvWxjnMDviB */
 :root {
     --primary-color: #3317A6;
     --secondary-color: #FEFB38;
     --third-color: #4F37B0;
-    --fourth-color: #FFC862;
+    --fourth-color: #FF00A1;
     --text-color: #444444;
     --inverse-text-color: #dddddd;
     --title-font-size: 48px;
@@ -30,6 +31,14 @@ body {
     margin: 0;
 }
 
+a {
+    color: #3317A6;
+}
+
+a:hover {
+    transform: scale(1.1);
+}
+
 .title {
     font-size: var(--title-font-size);
 }
@@ -40,6 +49,7 @@ body {
 
 .content {
     font-size: var(--lg-font-size);
+    padding: 0rem 2rem; 
 }
 
 /* swiperjs */
