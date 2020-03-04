@@ -2,7 +2,10 @@
 :root {
     --primary-color: #3317A6;
     --secondary-color: #FEFB38;
+    --third-color: #4F37B0;
+    --fourth-color: #FFC862;
     --text-color: #444444;
+    --inverse-text-color: #dddddd;
     --title-font-size: 48px;
     --lg-font-size: 24px;
     --font-size: 16px;
@@ -21,6 +24,8 @@ body {
     margin: 0;
 }
 
+/* swiperjs */
+
 .swiper-container {
     height: 100%;
 }
@@ -34,7 +39,6 @@ body {
     width: 100%;
     align-items: flex-start;
     justify-content: center;
-    color: var(--text-color);
     font-size: var(--title-font-size);
     background-color: var(--secondary-color);
 }
@@ -47,3 +51,27 @@ body {
     font-family: 'Comfortaa', cursive;
     margin: 0px;
 }
+
+/* about */
+
+.about {
+    display: grid;
+    color: var(--inverse-text-color);
+    background-color: var(--primary-color);
+}
+
+/* portfolio */
+
+.portfolio {
+    display: grid;
+    color: var(--inverse-text-color);
+    background-color: var(--third-color);
+}
+
+/* contact */
+
+.contact {
+    display: grid;
+    background-color: var(--fourth-color);
+}
+

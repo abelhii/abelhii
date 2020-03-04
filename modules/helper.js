@@ -11,6 +11,14 @@ function getRandomInt(min, max) {
 }
 
 /**
+ * check if letter is a vowel
+ * @param {*} letter 
+ */
+function isVowel(letter) {
+    return (/^[aeiou]$/i).test(letter);
+}
+
+/**
  * fetch html to load into html file
  * @param {*} url url of html file
  * @param {*} className classname to insert innerHTML
@@ -25,4 +33,4 @@ async function loadHtml(url, className) {
     document.querySelector(className).innerHTML = html;
 }
 
-export { loadHtml, getRandomInt };
+export { loadHtml, getRandomInt, isVowel };
