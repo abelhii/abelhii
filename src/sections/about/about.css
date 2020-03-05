@@ -1,5 +1,5 @@
 .about {
-    display: grid;
+    height: 150vh !important;
     color: var(--inverse-text-color);
     background-color: var(--primary-color);
 }
@@ -9,6 +9,7 @@
 }
 
 /* TIMELINE */
+/* https://codepen.io/alanhouser/pen/aErrQJ */
 
 .timeline {
     position: relative;
@@ -55,7 +56,7 @@
 
 /* For tablets and lower */
 @media (max-width: 768px) {
-    .about>div{
+    .about>div {
         padding: 2rem 10rem !important;
     }
 
@@ -70,7 +71,7 @@
 
 /* For phones and lower */
 @media (max-width: 425px) {
-    .about>div{
+    .about>div {
         padding: 2rem 2rem 2rem 4rem !important;
     }
 

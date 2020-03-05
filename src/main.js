@@ -9,9 +9,13 @@ let swiper = new Swiper('.swiper-container', {
     direction: 'vertical',
     parallax: true,
     speed: 600,
+    slidesPerView: 'auto',
     mousewheel: {
         releaseOnEdges: true
-    }
+    },
+    hashNavigation: {
+        watchState: true,
+    },
 });
 
 // LOAD HTML
@@ -25,12 +29,6 @@ loadHtml('./sections/header/header.html', '.header').then(() => {
         let description = `${subject} ${adjective} ${noun}`;
         subtitle.innerHTML = description;
     }, 1600);
-
-    // Listener to scroll down button
-    let scrollDownButton = document.getElementsByClassName('scrollDownButton')[0];
-    scrollDownButton.onclick = function (ev) {
-        swiper.slideNext();
-    }
 });
 
 loadHtml('./sections/about/about.html', '.about');
