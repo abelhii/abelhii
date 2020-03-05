@@ -4,6 +4,10 @@
     background-color: var(--primary-color);
 }
 
+.about .content {
+    font-size: var(--font-size);
+}
+
 /* TIMELINE */
 
 .timeline {
@@ -28,8 +32,8 @@
 
 /* date */
 .timeline li:before {
-    left: -6em;
-    min-width: 3em;
+    left: -10em;
+    min-width: 6em;
     text-align: right;
     color: var(--inverse-text-color);
     content: attr(data-date);
@@ -43,6 +47,34 @@
     height: 20px;
     width: 20px;
     content: "";
-    top: 1rem;
+    top: 0.5rem;
     left: -52px;
+}
+
+/* MEDIA QUERIES */
+
+/* For tablets and lower */
+@media (max-width: 768px) {
+    .about>div{
+        padding: 2rem 10rem !important;
+    }
+
+    /* Bullet point */
+    .timeline li:after {
+        height: 15px;
+        width: 15px;
+        top: 0.5rem;
+        left: -50px;
+    }
+}
+
+/* For phones and lower */
+@media (max-width: 425px) {
+    .about>div{
+        padding: 2rem 2rem 2rem 4rem !important;
+    }
+
+    .about .content {
+        font-size: var(--sm-font-size);
+    }
 }
