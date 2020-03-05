@@ -20,6 +20,7 @@
 
 html,
 body {
+    position: fixed;
     height: 100vh;
     width: 100vw;
 }
@@ -49,7 +50,7 @@ a:hover {
 
 .content {
     font-size: var(--lg-font-size);
-    padding: 0rem 2rem; 
+    padding: 0rem 2rem;
 }
 
 /* swiperjs */
@@ -93,6 +94,7 @@ a:hover {
 
 /* For phones and lower */
 @media (max-width: 425px) {
+
     /* swiperjs */
     .swiper-slide>div {
         padding: 1rem 2rem;

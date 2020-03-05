@@ -28,9 +28,22 @@
 /* MEDIA QUERIES */
 
 /* For tablets and lower */
+@media (max-width: 768px) {
+    .contact .content a {
+        font-size: 1.5em;
+    }
+}
+
 @media (max-width: 700px) {
     .contact .content {
         grid-template-columns: 1fr;
         grid-template-rows: repeat(3, 1fr);
+    }
+}
+
+/* For phones and lower */
+@media (max-width: 425px) {
+    .contact .content a {
+        font-size: 1em;
     }
 }
