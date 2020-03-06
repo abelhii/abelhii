@@ -1,5 +1,5 @@
 .about {
-    height: 150vh !important;
+    height: 110vh !important;
     color: var(--inverse-text-color);
     background-color: var(--primary-color);
 }
@@ -56,8 +56,8 @@
 
 /* For tablets and lower */
 @media (max-width: 768px) {
-    .about>div {
-        padding: 2rem 10rem !important;
+    .about .section {
+        padding: 2rem 10rem;
     }
 
     /* Bullet point */
@@ -71,8 +71,8 @@
 
 /* For phones and lower */
 @media (max-width: 425px) {
-    .about>div {
-        padding: 2rem 2rem 2rem 4rem !important;
+    .about .section {
+        padding: 2rem 2rem 2rem 4rem;
     }
 
     .about .content {

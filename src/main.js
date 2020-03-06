@@ -2,7 +2,7 @@ import { loadHtml, getRandomInt, isVowel } from './modules/helper.js'
 
 // CONSTSg
 const adjectives = ["irish", "malaysian", "wonderful", "affectionate", "dumb", "adventurous", "lazy", "ambitious", "smelly", "creative", "skilled", "passionate", "exuberant", "reliable", "resourceful"];
-const nouns = ["nerd", "designer", "coder", "gamer", "developer", "programmer", "monkey", "robot", "geek", "engineer", "man"];
+const nouns = ["nerd", "designer", "coder", "gamer", "developer", "programmer", "monkey", "robot", "geek", "engineer", "man", "tinkerer"];
 
 // INIT SWIPER
 let swiper = new Swiper('.swiper-container', {

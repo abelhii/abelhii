@@ -6,8 +6,8 @@
     background-color: var(--secondary-color);
 }
 
-.header>div {
-    padding-left: 16rem !important;
+.header .section {
+    padding-left: 16rem;
 }
 
 .header .title,
@@ -29,16 +29,15 @@
         font-size: var(--lg-font-size);
     }
 
-    .header>div {
-        padding: 2rem 4rem !important;
+    .header .section {
+        padding: 2rem 4rem;
     }
 }
 
 /* For phones and lower */
 @media (max-width: 425px) {
-    /* swiperjs */
-    .header>div {
-        padding: 1rem 2rem !important;
+    .header .section {
+        padding: 1rem 2rem;
     }
 }
 

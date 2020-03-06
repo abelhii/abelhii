@@ -52,7 +52,7 @@ a:hover {
     height: 100vh;
 }
 
-.swiper-slide>div {
+.section {
     padding: 4rem 16rem;
 }
 
@@ -61,7 +61,7 @@ a:hover {
 
 /* For laptops and lower */
 @media (max-width: 1024px) {
-    .swiper-slide>div {
+    .section {
         padding: 4rem 8rem;
     }
 }
@@ -80,16 +80,14 @@ a:hover {
         font-size: var(--font-size);
     }
 
-    .swiper-slide>div {
+    .section {
         padding: 2rem 4rem;
     }
 }
 
 /* For phones and lower */
 @media (max-width: 425px) {
-
-    /* swiperjs */
-    .swiper-slide>div {
+    .section {
         padding: 1rem 2rem;
     }
 }
