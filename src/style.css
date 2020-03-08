@@ -23,6 +23,7 @@ body {
     font-size: var(--font-size);
     color: var(--text-color);
     margin: 0;
+    overflow: hidden;
 }
 
 a {
@@ -56,6 +57,19 @@ a:hover {
     padding: 4rem 16rem;
 }
 
+/* scroll snap */
+.container {
+    height: 100vh;
+    overflow-y: scroll;
+    scroll-snap-type: y mandatory;
+    /* Enable Safari touch scrolling physics which is needed for scroll snap */
+    -webkit-overflow-scrolling: touch; 
+}
+
+.sections {
+    scroll-snap-align: start; /* snap align start */
+    height:100vh;
+}
 
 /* MEDIA QUERIES */
 

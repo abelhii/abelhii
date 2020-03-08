@@ -5,18 +5,18 @@ const adjectives = ["irish", "malaysian", "wonderful", "affectionate", "dumb", "
 const nouns = ["nerd", "designer", "coder", "gamer", "developer", "programmer", "monkey", "robot", "geek", "engineer", "man", "tinkerer"];
 
 // INIT SWIPER
-let swiper = new Swiper('.swiper-container', {
-    direction: 'vertical',
-    parallax: true,
-    speed: 600,
-    slidesPerView: 'auto',
-    mousewheel: {
-        releaseOnEdges: true
-    },
-    hashNavigation: {
-        watchState: true,
-    },
-});
+// let swiper = new Swiper('.swiper-container', {
+//     direction: 'vertical',
+//     parallax: true,
+//     speed: 600,
+//     slidesPerView: 'auto',
+//     mousewheel: {
+//         releaseOnEdges: true
+//     },
+//     hashNavigation: {
+//         watchState: true,
+//     },
+// });
 
 // LOAD HTML
 loadHtml('./sections/header/header.html', '.header').then(() => {
