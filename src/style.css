@@ -27,7 +27,8 @@ body {
 }
 
 a {
-    color: #3317A6;
+    color: var(--secondary-color);
+    text-decoration: none;
 }
 
 a:hover {
@@ -47,35 +48,30 @@ a:hover {
     padding: 0rem 2rem;
 }
 
-/* swiperjs */
-
-.swiper-container {
-    height: 100vh;
-}
-
-.section {
-    padding: 4rem 16rem;
-}
-
 /* scroll snap */
 .container {
     height: 100vh;
     overflow-y: scroll;
     scroll-snap-type: y mandatory;
     /* Enable Safari touch scrolling physics which is needed for scroll snap */
-    -webkit-overflow-scrolling: touch; 
+    -webkit-overflow-scrolling: touch;
+    scroll-behavior: smooth;
 }
 
-.sections {
+.section {
     scroll-snap-align: start; /* snap align start */
     height:100vh;
+}
+
+.section-padding {
+    padding: 4rem 16rem;
 }
 
 /* MEDIA QUERIES */
 
 /* For laptops and lower */
 @media (max-width: 1024px) {
-    .section {
+    .section-padding {
         padding: 4rem 8rem;
     }
 }
@@ -94,14 +90,14 @@ a:hover {
         font-size: var(--font-size);
     }
 
-    .section {
+    .section-padding {
         padding: 2rem 4rem;
     }
 }
 
 /* For phones and lower */
 @media (max-width: 425px) {
-    .section {
+    .section-padding {
         padding: 1rem 2rem;
     }
 }

@@ -4,20 +4,6 @@ import { loadHtml, getRandomInt, isVowel } from './modules/helper.js'
 const adjectives = ["irish", "malaysian", "wonderful", "affectionate", "dumb", "adventurous", "lazy", "ambitious", "smelly", "creative", "skilled", "passionate", "exuberant", "reliable", "resourceful"];
 const nouns = ["nerd", "designer", "coder", "gamer", "developer", "programmer", "monkey", "robot", "geek", "engineer", "man", "tinkerer"];
 
-// INIT SWIPER
-// let swiper = new Swiper('.swiper-container', {
-//     direction: 'vertical',
-//     parallax: true,
-//     speed: 600,
-//     slidesPerView: 'auto',
-//     mousewheel: {
-//         releaseOnEdges: true
-//     },
-//     hashNavigation: {
-//         watchState: true,
-//     },
-// });
-
 // LOAD HTML
 loadHtml('./sections/header/header.html', '.header').then(() => {
     // Loop subtitles
@@ -35,3 +21,17 @@ loadHtml('./sections/about/about.html', '.about');
 loadHtml('./sections/portfolio/portfolio.html', '.portfolio');
 loadHtml('./sections/contact/contact.html', '.contact');
 
+// When scrolling to about section disable css scroll snap
+var about = document.getElementById('about').getBoundingClientRect();
+var container = document.getElementsByClassName('container')[0];
+container.addEventListener('scroll', () => {
+    var padding = 200;
+    var withinAboutSection = (about.top + padding) <= container.scrollTop &&
+                            (about.bottom - padding) >= container.scrollTop;
+
+    if (withinAboutSection) {
+        container.style.scrollSnapType = "none";
+    } else if(getComputedStyle(container).scrollSnapType == "none") {
+        container.style.scrollSnapType = 'y mandatory';
+    }
+});

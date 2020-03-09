@@ -56,8 +56,12 @@
 
 /* For tablets and lower */
 @media (max-width: 768px) {
-    .about .section {
+    .about .section-padding {
         padding: 2rem 10rem;
+    }
+
+    .about .content {
+        font-size: var(--sm-font-size);
     }
 
     /* Bullet point */
@@ -71,8 +75,8 @@
 
 /* For phones and lower */
 @media (max-width: 425px) {
-    .about .section {
-        padding: 2rem 2rem 2rem 4rem;
+    .about .section-padding {
+        padding: 2rem 1rem 2rem 4rem;
     }
 
     .about .content {
