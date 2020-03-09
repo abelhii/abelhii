@@ -1,7 +1,7 @@
 import { loadHtml, getRandomInt, isVowel } from './modules/helper.js'
 
 // CONSTSg
-const adjectives = ["irish", "malaysian", "wonderful", "affectionate", "dumb", "adventurous", "lazy", "ambitious", "smelly", "creative", "skilled", "passionate", "exuberant", "reliable", "resourceful"];
+const adjectives = ["irish", "malaysian", "wonderful", "affectionate", "dumb", "adventurous", "lazy", "ambitious", "smelly", "creative", "passionate", "reliable", "resourceful", "full stack"];
 const nouns = ["nerd", "designer", "coder", "gamer", "developer", "programmer", "monkey", "robot", "geek", "engineer", "man", "tinkerer"];
 
 // LOAD HTML
@@ -14,7 +14,7 @@ loadHtml('./sections/header/header.html', '.header').then(() => {
         let subject = `is ${isVowel(adjective[0]) ? 'an' : 'a'}`;
         let description = `${subject} ${adjective} ${noun}`;
         subtitle.innerHTML = description;
-    }, 1600);
+    }, 1500);
 });
 
 loadHtml('./sections/about/about.html', '.about');
@@ -25,8 +25,8 @@ loadHtml('./sections/contact/contact.html', '.contact');
 var about = document.getElementById('about').getBoundingClientRect();
 var container = document.getElementsByClassName('container')[0];
 container.addEventListener('scroll', () => {
-    var padding = 200;
-    var withinAboutSection = (about.top + padding) <= container.scrollTop &&
+    let padding = 200;
+    let withinAboutSection = (about.top) <= container.scrollTop &&
                             (about.bottom - padding) >= container.scrollTop;
 
     if (withinAboutSection) {
