@@ -1,5 +1,63 @@
 .portfolio {
-    display: grid;
+    min-height: 100vh;
+    height: auto !important;
     color: var(--inverse-text-color);
     background-color: var(--third-color);
+}
+
+.portfolio .section-padding {
+    padding: 4rem 2rem 4rem 2rem;
+}
+
+.portfolio .title {
+    padding: 0rem 8rem;
+}
+
+.portfolio .content {
+    padding: 0;
+}
+
+.port-work {
+    display: grid;
+    padding: 1rem;
+    grid-template-columns: repeat(2, 1fr);
+}
+
+.port-img {
+    width: 50%;
+}
+
+.port-work .port-content {
+    width: 80%;
+    font-size: var(--font-size);
+}
+
+
+/* MEDIA QUERIES */
+
+@media (max-width: 768px) {
+    .portfolio .title {
+        padding: 0rem 4rem;
+    }
+
+    .portfolio .title h3 {
+        margin: 0;
+    }
+
+    .port-work {
+        display: grid;
+        padding: 1rem;
+        grid-template-columns: none;
+    }
+
+    .port-work .port-content {
+        font-size: var(--sm-font-size);
+    }
+}
+
+/* For phones and lower */
+@media (max-width: 425px) {
+    .portfolio .title {
+        padding: 0rem 1rem 0 4rem;
+    }
 }

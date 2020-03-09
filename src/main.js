@@ -18,7 +18,17 @@ loadHtml('./sections/header/header.html', '.header').then(() => {
 });
 
 loadHtml('./sections/about/about.html', '.about');
-loadHtml('./sections/portfolio/portfolio.html', '.portfolio');
+loadHtml('./sections/portfolio/portfolio.html', '.portfolio').then(() => {
+    // init swiperjs
+    var portfolioSwiper = new Swiper('.swiper-container', {
+        loop: true,
+        // Navigation arrows
+        navigation: {
+            nextEl: '.swiper-button-next',
+            prevEl: '.swiper-button-prev',
+        }
+    })
+});
 loadHtml('./sections/contact/contact.html', '.contact');
 
 // TODO: Clean up code
