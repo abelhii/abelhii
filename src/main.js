@@ -38,6 +38,21 @@ var contact = document.getElementById('contact').getBoundingClientRect();
 
 // Make things happen as user scrolls through the page
 container.addEventListener('scroll', () => {
+    displayAndHighlightNavItems();
+
+    // When scrolling to about section disable css scroll snap
+    if (about.top <= container.scrollTop && (about.bottom - 500) >= container.scrollTop) {
+        container.style.scrollSnapType = "none";
+    } else if (getComputedStyle(container).scrollSnapType == "none") {
+        container.style.scrollSnapType = 'y mandatory';
+    }
+});
+
+// OTHER FUNCTIONS
+
+function displayAndHighlightNavItems() {
+    let pad = 500;
+
     // Display nav halfway through the header section
     if ((header.bottom / 2) <= container.scrollTop) {
         nav.classList.add('display');
@@ -45,12 +60,12 @@ container.addEventListener('scroll', () => {
         nav.classList.remove('display');
     }
 
-    // set navigation to be active
-    if (about.top <= container.scrollTop && about.bottom >= container.scrollTop) {
+    // Set navigation to be active
+    if (about.top <= container.scrollTop && (about.bottom - pad) > container.scrollTop) {
         navItems[1].classList.remove('active');
         navItems[2].classList.remove('active');
         navItems[0].classList.add('active');
-    } else if (portfolio.top <= container.scrollTop && portfolio.bottom >= container.scrollTop) {
+    } else if (portfolio.top <= container.scrollTop && (portfolio.bottom - pad) > container.scrollTop) {
         navItems[0].classList.remove('active');
         navItems[2].classList.remove('active');
         navItems[1].classList.add('active');
@@ -59,12 +74,4 @@ container.addEventListener('scroll', () => {
         navItems[1].classList.remove('active');
         navItems[2].classList.add('active');
     }
-
-    // When scrolling to about section disable css scroll snap
-    let withinAboutSection = about.top <= container.scrollTop && about.bottom >= container.scrollTop;
-    if (withinAboutSection) {
-        container.style.scrollSnapType = "none";
-    } else if (getComputedStyle(container).scrollSnapType == "none") {
-        container.style.scrollSnapType = 'y mandatory';
-    }
-});
+}
