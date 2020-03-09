@@ -52,6 +52,7 @@ a:hover {
 .container {
     height: 100vh;
     overflow-y: scroll;
+    overflow-x: hidden;
     scroll-snap-type: y mandatory;
     /* Enable Safari touch scrolling physics which is needed for scroll snap */
     -webkit-overflow-scrolling: touch;
@@ -59,8 +60,9 @@ a:hover {
 }
 
 .section {
-    scroll-snap-align: start; /* snap align start */
-    height:100vh;
+    scroll-snap-align: start;
+    /* snap align start */
+    height: 100vh;
 }
 
 .section-padding {

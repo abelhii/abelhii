@@ -1,5 +1,5 @@
 .about {
-    height: 110vh !important;
+    height: auto !important;
     color: var(--inverse-text-color);
     background-color: var(--primary-color);
 }
