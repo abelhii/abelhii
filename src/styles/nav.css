@@ -1,5 +1,3 @@
-/* TODO: Responsive */
-
 .navigation {
     position: absolute;
     bottom: 2rem;
@@ -48,4 +46,13 @@
 .navigation li:hover:before,
 .navigation li:hover:after {
     opacity: 1;
+}
+
+/* MEDIA QUERIES */
+
+/* For phones and lower */
+@media (max-width: 425px) {
+    .navigation {
+        display: none;
+    }
 }
