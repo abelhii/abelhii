@@ -48,23 +48,20 @@ container.addEventListener('scroll', () => {
     // set navigation to be active
     if (about.top <= container.scrollTop && about.bottom >= container.scrollTop) {
         navItems[1].classList.remove('active');
-        navItems[2].classList.remove('active'); 
-        navItems[0].classList.add('active'); 
+        navItems[2].classList.remove('active');
+        navItems[0].classList.add('active');
     } else if (portfolio.top <= container.scrollTop && portfolio.bottom >= container.scrollTop) {
         navItems[0].classList.remove('active');
-        navItems[2].classList.remove('active'); 
-        navItems[1].classList.add('active'); 
+        navItems[2].classList.remove('active');
+        navItems[1].classList.add('active');
     } else if (contact.top <= container.scrollTop) {
         navItems[0].classList.remove('active');
-        navItems[1].classList.remove('active'); 
-        navItems[2].classList.add('active'); 
+        navItems[1].classList.remove('active');
+        navItems[2].classList.add('active');
     }
 
     // When scrolling to about section disable css scroll snap
-    let padding = 200;
-    let withinAboutSection = (about.top) <= container.scrollTop &&
-        (about.bottom - padding) >= container.scrollTop;
-
+    let withinAboutSection = about.top <= container.scrollTop && about.bottom >= container.scrollTop;
     if (withinAboutSection) {
         container.style.scrollSnapType = "none";
     } else if (getComputedStyle(container).scrollSnapType == "none") {
