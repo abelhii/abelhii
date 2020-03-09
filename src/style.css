@@ -1,8 +1,9 @@
+@import './styles/helpers.css';
+@import './styles/nav.css';
 @import './sections/header/header.css';
 @import './sections/about/about.css';
 @import './sections/portfolio/portfolio.css';
 @import './sections/contact/contact.css';
-@import './styles/helpers.css';
 
 /* https://paletton.com/#uid=34b0u0kvou7jGB6oXvWxjnMDviB */
 :root {
@@ -54,14 +55,13 @@ a:hover {
     overflow-y: scroll;
     overflow-x: hidden;
     scroll-snap-type: y mandatory;
+    scroll-behavior: smooth;
     /* Enable Safari touch scrolling physics which is needed for scroll snap */
     -webkit-overflow-scrolling: touch;
-    scroll-behavior: smooth;
 }
 
 .section {
     scroll-snap-align: start;
-    /* snap align start */
     height: 100vh;
 }
 

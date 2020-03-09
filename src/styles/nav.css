@@ -1,0 +1,51 @@
+/* TODO: Responsive */
+
+.navigation {
+    position: absolute;
+    bottom: 2rem;
+    right: 4rem;
+    color: var(--fourth-color);
+    filter: drop-shadow(2px 2px 6px);
+    line-height: 2em;
+    display: none;
+    /* TODO: display not transitioning when changing display in javascript */
+    transition: all 2s ease;
+}
+
+.display{
+    display: block;
+}
+
+.navigation a {
+    color: var(--fourth-color);
+}
+
+.navigation ul {
+    list-style: none;
+}
+
+.navigation li:before,
+.navigation li:after {
+    opacity: 0;
+    transition: all 0.25s ease;
+}
+
+.navigation li.active:before,
+.navigation li.active:after {
+    opacity: 1;
+}
+
+.navigation li:before {
+    left: 1;
+    content: '-';
+}
+
+.navigation li:after {
+    right: 1;
+    content: '-';
+}
+
+.navigation li:hover:before,
+.navigation li:hover:after {
+    opacity: 1;
+}
