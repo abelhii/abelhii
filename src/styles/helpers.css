@@ -2,19 +2,17 @@
 [data-tooltip]:before {
     position: absolute;
     content: attr(data-tooltip);
+    font-size: var(--sm-font-size);
+    color: var(--text-color);
     opacity: 0;
-
-    font-size: 16px;
     transition: all 0.15s ease;
     padding: 10px;
-    color: var(--text-color);
     border-radius: 15px;
     box-shadow: 2px 2px 1px silver;
 }
 
 [data-tooltip]:hover:before {
     opacity: 1;
-
     background: #fff;
     margin-top: -50px;
     margin-left: 10px;

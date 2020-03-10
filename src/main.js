@@ -64,7 +64,7 @@ container.addEventListener('scroll', () => {
         } else if (getComputedStyle(container).scrollSnapType == "y") {
             container.style.scrollSnapType = 'y mandatory';
         }
-    } else {
+    } else if (container.style.scrollSnapType != "none") {
         container.style.scrollSnapType = "none";
     }
 });

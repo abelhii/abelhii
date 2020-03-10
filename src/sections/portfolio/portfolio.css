@@ -25,7 +25,7 @@
     position: relative;
     display: grid;
     min-height: 60vh;
-    padding: 1em;
+    padding: 4rem 2rem 2rem 7rem;
     grid-template-columns: 1fr 2fr;
 }
 
@@ -53,11 +53,14 @@
 
 .port-work .port-content {
     width: 75%;
+    padding-left: 1em;
+    align-self: center;
     justify-self: start;
+    font-size: var(--md-font-size);
 }
 
 .port-work .port-content h2 {
-    margin-bottom: 0;
+    margin: 0;
 }
 
 .port-work .port-content .technology {
@@ -80,6 +83,7 @@
 
     .port-work {
         display: grid;
+        padding: 1em;
         padding-left: 2em;
         grid-template-columns: none;
     }
@@ -91,8 +95,13 @@
 
     .port-work .port-img,
     .port-work .port-content {
+        padding: 0;
         justify-self: start;
         font-size: var(--sm-font-size);
+    }
+
+    .port-work .port-content h2 {
+        margin-top: 0.83em;
     }
 }
 
@@ -103,6 +112,6 @@
     }
 
     .portfolio .title {
-        padding: 0rem 1rem 0 4rem;
+        padding: 0 1rem 0 2rem;
     }
 }

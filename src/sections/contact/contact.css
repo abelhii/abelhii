@@ -11,6 +11,22 @@
     text-align: center;
 }
 
+.contact .title h2 a {
+    color: var(--third-color);
+}
+
+.contact .title h2 a:after {
+    opacity: 0;
+    margin-right: -0.95em;
+    transition: all 0.25s ease;
+    content: 'V';
+}
+
+.contact .title h2 a:hover:after {
+    opacity: 1;
+    margin-right: -0.3em;
+}
+
 .contact .content {
     display: grid;
     column-gap: 2em;
