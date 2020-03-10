@@ -22,7 +22,6 @@ loadHtml('./sections/portfolio/portfolio.html', '.portfolio').then(() => {
     // init swiperjs
     var portfolioSwiper = new Swiper('.swiper-container', {
         loop: true,
-        // Navigation arrows
         navigation: {
             nextEl: '.swiper-button-next',
             prevEl: '.swiper-button-prev',
@@ -48,21 +47,6 @@ var contact = document.getElementById('contact').getBoundingClientRect();
 
 // Make things happen as user scrolls through the page
 container.addEventListener('scroll', () => {
-    displayAndHighlightNavItems();
-
-    // When scrolling to about section disable css scroll snap
-    if (about.top <= container.scrollTop && (about.bottom - 500) >= container.scrollTop) {
-        container.style.scrollSnapType = "none";
-    } else if (getComputedStyle(container).scrollSnapType == "none") {
-        container.style.scrollSnapType = 'y mandatory';
-    }
-});
-
-// OTHER FUNCTIONS
-
-function displayAndHighlightNavItems() {
-    let pad = 500;
-
     // Display nav halfway through the header section
     if ((header.bottom / 2) <= container.scrollTop) {
         nav.classList.add('display');
@@ -70,18 +54,17 @@ function displayAndHighlightNavItems() {
         nav.classList.remove('display');
     }
 
-    // Set navigation to be active
-    if (about.top <= container.scrollTop && (about.bottom - pad) > container.scrollTop) {
-        navItems[1].classList.remove('active');
-        navItems[2].classList.remove('active');
-        navItems[0].classList.add('active');
-    } else if (portfolio.top <= container.scrollTop && (portfolio.bottom - pad) > container.scrollTop) {
-        navItems[0].classList.remove('active');
-        navItems[2].classList.remove('active');
-        navItems[1].classList.add('active');
-    } else if (contact.top <= container.scrollTop) {
-        navItems[0].classList.remove('active');
-        navItems[1].classList.remove('active');
-        navItems[2].classList.add('active');
+    // If in mobile view remove scroll snap
+    if (container.clientWidth > 425) {
+        let pad = 250;
+        // change scroll snap if viewport is within about and portfolio sections
+        let witihinAboutAndPort = about.top <= container.scrollTop && (portfolio.bottom - pad) >= container.scrollTop;
+        if (witihinAboutAndPort) {
+            container.style.scrollSnapType = "y";   // proximity
+        } else if (getComputedStyle(container).scrollSnapType == "y") {
+            container.style.scrollSnapType = 'y mandatory';
+        }
+    } else {
+        container.style.scrollSnapType = "none";
     }
-}
+});

@@ -2,15 +2,19 @@
     min-height: 100vh;
     height: auto !important;
     color: var(--inverse-text-color);
-    background-color: var(--third-color);
+    background-color: #4F37B0;
 }
 
 .portfolio .section-padding {
-    padding: 4rem 2rem 4rem 2rem;
+    padding: 4rem 1rem;
 }
 
 .portfolio .title {
     padding: 0rem 8rem;
+}
+
+.portfolio .title h3 {
+    margin: 0;
 }
 
 .portfolio .content {
@@ -18,45 +22,81 @@
 }
 
 .port-work {
+    position: relative;
     display: grid;
-    padding: 1rem;
-    grid-template-columns: repeat(2, 1fr);
+    padding: 1em;
+    grid-template-columns: 1fr 2fr;
 }
 
-.port-img {
-    width: 50%;
+.chow .port-img {
+    background-image: url(https://images.unsplash.com/photo-1541689221361-ad95003448dc?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80);
+}
+
+.timemap .port-img {
+    background-image: url(https://images.unsplash.com/flagged/photo-1566127992631-137a642a90f4?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80);
+}
+
+.port-work .port-img {
+    height: 100%;
+    width: 90%;
+    align-self: center;
+    justify-self: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
 }
 
 .port-work .port-content {
-    width: 80%;
+    width: 75%;
+    justify-self: start;
+    font-size: var(--sm-font-size);
+}
+
+.port-work .port-content h2 {
+    margin-bottom: 0;
+}
+
+.port-work .port-content .technology {
+    color: var(--third-color);
+}
+
+.content .swiper-button-next:after,
+.content .swiper-button-prev:after {
+    color: #fff;
     font-size: var(--font-size);
 }
 
-
 /* MEDIA QUERIES */
 
+/* For tablets and lower */
 @media (max-width: 768px) {
     .portfolio .title {
         padding: 0rem 4rem;
     }
 
-    .portfolio .title h3 {
-        margin: 0;
-    }
-
     .port-work {
         display: grid;
-        padding: 1rem;
+        padding-left: 2em;
         grid-template-columns: none;
     }
 
+    .port-work .port-img {
+        height: 40vh;
+        width: 75%;
+    }
+
+    .port-work .port-img,
     .port-work .port-content {
-        font-size: var(--sm-font-size);
+        justify-self: start;
     }
 }
 
 /* For phones and lower */
 @media (max-width: 425px) {
+    .portfolio .section-padding {
+        padding: 4rem 0;
+    }
+
     .portfolio .title {
         padding: 0rem 1rem 0 4rem;
     }

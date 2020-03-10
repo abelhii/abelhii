@@ -9,7 +9,7 @@
 :root {
     --primary-color: #3317A6;
     --secondary-color: #FEFB38;
-    --third-color: #4F37B0;
+    --third-color: #24ba78;
     --fourth-color: #FF00A1;
     --text-color: #444444;
     --inverse-text-color: #dddddd;
@@ -30,6 +30,7 @@ body {
 a {
     color: var(--secondary-color);
     text-decoration: none;
+    font-variant: all-small-caps;
 }
 
 a:hover {
