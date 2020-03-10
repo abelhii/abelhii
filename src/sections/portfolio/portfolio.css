@@ -24,6 +24,7 @@
 .port-work {
     position: relative;
     display: grid;
+    min-height: 60vh;
     padding: 1em;
     grid-template-columns: 1fr 2fr;
 }
@@ -33,6 +34,10 @@
 }
 
 .timemap .port-img {
+    background-image: url(https://images.unsplash.com/photo-1571043733612-d5444ff7d4ae?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=675&q=80);
+}
+
+.abelhii .port-img {
     background-image: url(https://images.unsplash.com/flagged/photo-1566127992631-137a642a90f4?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80);
 }
 
