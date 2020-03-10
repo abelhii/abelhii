@@ -54,7 +54,6 @@
 .port-work .port-content {
     width: 75%;
     justify-self: start;
-    font-size: var(--sm-font-size);
 }
 
 .port-work .port-content h2 {
@@ -93,6 +92,7 @@
     .port-work .port-img,
     .port-work .port-content {
         justify-self: start;
+        font-size: var(--sm-font-size);
     }
 }
 

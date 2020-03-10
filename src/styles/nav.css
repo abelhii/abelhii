@@ -9,7 +9,6 @@
     z-index: 999;
     /* TODO: display not transitioning when changing display in javascript */
     transition: all 0.5s ease;
-    font-size: var(--sm-font-size);
 }
 
 .display{
@@ -54,6 +53,13 @@
 }
 
 /* MEDIA QUERIES */
+
+/* For tablets and lower */
+@media (max-width: 768px) {
+    .navigation {
+        font-size: var(--sm-font-size);
+    }
+}
 
 /* For phones and lower */
 @media (max-width: 425px) {
