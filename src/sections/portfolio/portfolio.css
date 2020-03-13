@@ -30,11 +30,13 @@
 }
 
 .chow .port-img {
-    background-image: url(https://images.unsplash.com/photo-1541689221361-ad95003448dc?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80);
+    /* background-image: url(https://images.unsplash.com/photo-1541689221361-ad95003448dc?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80); */
+    background-image: url(../../assets/images/chow.png);
 }
 
 .timemap .port-img {
-    background-image: url(https://images.unsplash.com/photo-1571043733612-d5444ff7d4ae?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=675&q=80);
+    /* background-image: url(https://images.unsplash.com/photo-1571043733612-d5444ff7d4ae?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=675&q=80); */
+    background-image: url(../../assets/images/timemap.png);
 }
 
 .abelhii .port-img {
@@ -59,8 +61,14 @@
     font-size: var(--md-font-size);
 }
 
-.port-work .port-content h2 {
+.port-work .port-content .port-title {
+    display: flex;
+    align-items: center;
+}
+
+.port-work .port-content .port-title h2 {
     margin: 0;
+    margin-right: 16px;
 }
 
 .port-work .port-content .technology {
