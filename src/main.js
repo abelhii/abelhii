@@ -55,16 +55,16 @@ container.addEventListener('scroll', () => {
     }
 
     // If in mobile view remove scroll snap
-    if (container.clientWidth > 425) {
-        let pad = 250;
-        // change scroll snap if viewport is within about and portfolio sections
-        let witihinAboutAndPort = about.top <= container.scrollTop && (portfolio.bottom - pad) >= container.scrollTop;
-        if (witihinAboutAndPort) {
-            container.style.scrollSnapType = "y";   // proximity
-        } else if (getComputedStyle(container).scrollSnapType == "y") {
-            container.style.scrollSnapType = 'y mandatory';
-        }
-    } else if (container.style.scrollSnapType != "none") {
-        container.style.scrollSnapType = "none";
-    }
+    // if (container.clientWidth > 425) {
+    //     let pad = 250;
+    //     // change scroll snap if viewport is within about and portfolio sections
+    //     let witihinAboutAndPort = about.top <= container.scrollTop && (portfolio.bottom - pad) >= container.scrollTop;
+    //     if (witihinAboutAndPort) {
+    //         container.style.scrollSnapType = "y";   // proximity
+    //     } else if (getComputedStyle(container).scrollSnapType == "y") {
+    //         container.style.scrollSnapType = 'y mandatory';
+    //     }
+    // } else if (container.style.scrollSnapType != "none") {
+    //     container.style.scrollSnapType = "none";
+    // }
 });

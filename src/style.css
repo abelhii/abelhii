@@ -56,7 +56,7 @@ a:hover {
     height: 100vh;
     overflow-y: scroll;
     overflow-x: hidden;
-    scroll-snap-type: y mandatory;
+    scroll-snap-type: y proximity;
     scroll-behavior: smooth;
     /* Enable Safari touch scrolling physics which is needed for scroll snap */
     -webkit-overflow-scrolling: touch;
