@@ -1,8 +1,8 @@
 import { loadHtml, getRandomInt, isVowel } from './modules/helper.js'
 
 // CONSTS
-const adjectives = ["irish", "malaysian", "wonderful", "affectionate", "dumb", "adventurous", "lazy", "ambitious", "smelly", "creative", "passionate", "reliable", "resourceful", "full stack"];
-const nouns = ["nerd", "designer", "coder", "gamer", "developer", "programmer", "monkey", "robot", "geek", "engineer", "man", "tinkerer"];
+const adjectives = ["irish", "malaysian", "wonderful", "affectionate", "adventurous", "ambitious", "creative", "passionate", "full stack"];
+const nouns = ["nerd", "designer", "coder", "gamer", "developer", "programmer", "monkey", "geek", "engineer", "man", "tinkerer"];
 
 // LOAD HTML
 loadHtml('./sections/header/header.html', '.header').then(() => {
