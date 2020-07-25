@@ -1,14 +1,18 @@
 .header {
     position: relative;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
     justify-content: center;
     background-color: var(--secondary-color);
 }
 
-.header .section-padding {
-    padding-left: 16rem;
+.header .section-padding {    
+    padding: 2rem;
+}
+
+.header .header-text {
+    padding-left: 8rem;
 }
 
 .header .title,
@@ -26,12 +30,25 @@
 
 /* For tablets and lower */
 @media (max-width: 768px) {
-    .header .subtitle {
-        font-size: var(--lg-font-size);
+    .header {
+        grid-template-columns: 1fr;
     }
 
     .header .section-padding {
         padding: 2rem 4rem;
+        margin: 0 auto;
+    }
+
+    .header .header-text {
+        padding-left: 2rem;
+    }
+
+    .header .avatar {
+        align-self: flex-start
+    }
+
+    .header .subtitle {
+        font-size: var(--lg-font-size);
     }
 }
 

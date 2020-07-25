@@ -1,4 +1,4 @@
-import { loadHtml, getRandomInt, isVowel } from './modules/helper.js'
+import { loadHtml, getRandomInt, isVowel } from './scripts/helper.js'
 
 // CONSTS
 const adjectives = ["irish", "malaysian", "wonderful", "affectionate", "adventurous", "ambitious", "creative", "passionate", "full stack"];
@@ -15,18 +15,22 @@ loadHtml('./sections/header/header.html', '.header').then(() => {
         let description = `${subject} ${adjective} ${noun}`;
         subtitle.innerHTML = description;
     }, 1500);
+
+    var tag = document.createElement("script");
+    tag.src = "scripts/abelavatar.js";
+    document.getElementsByTagName("head")[0].appendChild(tag);
 });
 
 loadHtml('./sections/about/about.html', '.about');
 loadHtml('./sections/portfolio/portfolio.html', '.portfolio').then(() => {
     // init swiperjs
-    var portfolioSwiper = new Swiper('.swiper-container', {
-        loop: true,
-        navigation: {
-            nextEl: '.swiper-button-next',
-            prevEl: '.swiper-button-prev',
-        }
-    })
+    // var portfolioSwiper = new Swiper('.swiper-container', {
+    //     loop: true,
+    //     navigation: {
+    //         nextEl: '.swiper-button-next',
+    //         prevEl: '.swiper-button-prev',
+    //     }
+    // })
 });
 loadHtml('./sections/contact/contact.html', '.contact');
 
