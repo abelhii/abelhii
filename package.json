@@ -1,0 +1,24 @@
+{
+  "name": "abelhii",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/abelhii/abelhii.git"
+  },
+  "keywords": [],
+  "author": "Abel Hii",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/abelhii/abelhii/issues"
+  },
+  "homepage": "https://github.com/abelhii/abelhii#readme",
+  "devDependencies": {
+    "@11ty/eleventy": "^0.11.0"
+  },
+  "dependencies": {}
+}
