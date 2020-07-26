@@ -1,0 +1,7 @@
+.project {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    max-width: 60ch;
+    margin: auto;
+}

@@ -1,17 +1,48 @@
 ---
 layout: base.njk
+faviconURL: assets/favicon/favicon.ico
+styleURL: style.css
+
+pagination:
+  data: collections.project
+  size: 10
+  reverse: true
+  alias: projects
 ---
+<div class="container">
+    <div class="header section"></div>
+    <div id="about" class="about section" data-hash="about"></div>
+    <div id="portfolio" class="portfolio section" data-hash="portfolio">
+        <div class="section-padding">
+            <div class="title">
+                <h3>Here are some things.</h3>
+            </div>
+            {% for project in projects %}
+                <article>
+                    <div class="title">
+                        <h3>
+                            <a href="{{ project.url | url }}">{{ project.data.projectTitle }}</a>
+                        </h3>
+                    </div>
+                </article>
+            {% endfor %}
+        </div>
+    </div>
+    <div id="contact" class="contact section" data-hash="contact"></div>
 
-<div class="header section"></div>
-<div id="about" class="about section" data-hash="about"></div>
-<div id="portfolio" class="portfolio section" data-hash="portfolio"></div>
-<div id="contact" class="contact section" data-hash="contact"></div>
-
-<!-- Navigation -->
-<div class="navigation">
-    <ul>
-        <li><a href="#about">about</a></li>
-        <li><a href="#portfolio">portfolio</a></li>
-        <li><a href="#contact">contact</a></li>
-    </ul>
+    <!-- Navigation -->
+    <div class="navigation">
+        <ul>
+            <li>
+                <a href="#about">about</a>
+            </li>
+            <li>
+                <a href="#portfolio">portfolio</a>
+            </li>
+            <li>
+                <a href="#contact">contact</a>
+            </li>
+        </ul>
+    </div>
 </div>
+<script type="module" src="main.mjs"></script>

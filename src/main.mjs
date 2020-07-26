@@ -23,23 +23,40 @@ loadHtml('./sections/header/index.html', '.header').then(() => {
 });
 
 loadHtml('./sections/about/index.html', '.about');
-loadHtml('./sections/portfolio/index.html', '.portfolio');
+// loadHtml('./sections/portfolio/index.html', '.portfolio');
 loadHtml('./sections/contact/index.html', '.contact');
 
 
-// Nav
-var nav = document.querySelector('.navigation');
-// Container
-var container = document.querySelector('.container');
-var header = document.querySelector('.header').getBoundingClientRect();
-// EVENT LISTENERS
 
-// Make things happen as user scrolls through the page
-container.addEventListener('scroll', () => {
-    // Display nav halfway through the header section
-    if ((header.bottom / 2) <= container.scrollTop) {
-        nav.classList.add('display');
-    } else if (nav.classList.contains('display')) {
-        nav.classList.remove('display');
-    }
-});
+// Make Nav appear
+// var nav = document.querySelector('.navigation');
+// var body = document.querySelector('body');
+// var header = document.querySelector('.header').getBoundingClientRect();
+
+// var locked = false;
+// // what should we do when scrolling occurs
+// var runOnScroll = function (evt) {
+//     if(locked) return;
+    
+//     // not the most exciting thing, but a thing nonetheless
+//     console.log(header);
+//     console.log(body);
+    
+//     // Display nav halfway through the header section
+//     if ((header.bottom / 2) <= body.offsetTop) {
+//         nav.classList.add('display');
+//     } else if (nav.classList.contains('display')) {
+//         nav.classList.remove('display');
+//     }
+
+//     locked = false;
+// };
+
+// // grab elements as array, rather than as NodeList
+// var elements = document.querySelectorAll('body');
+// elements = Array.prototype.slice.call(elements);
+
+// // and then make each element do something on scroll
+// elements.forEach(function (element) {
+//     window.addEventListener("scroll", runOnScroll, { passive: true });
+// });

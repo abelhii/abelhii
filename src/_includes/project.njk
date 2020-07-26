@@ -1,6 +1,14 @@
 ---
 layout: base.njk
+faviconURL: ../../assets/favicon/favicon.ico
+styleURL: ../../style.css
+extraStyle: ../project.css
 ---
-<h1>{{ projectTitle }}</h1>
 
-{{ content | safe }}
+<div class="project">
+    <a href="../../">home</a>
+
+    <h1>{{ projectTitle }}</h1>
+
+    {{ content | safe }}
+</div>
