@@ -1,5 +1,6 @@
 .navigation {
-    position: absolute;
+    position: fixed;
+    font-size: var(--font-size);
     bottom: 2rem;
     right: -2rem;
     color: var(--fourth-color);
@@ -49,7 +50,7 @@
 .navigation li:hover:after,
 .navigation a:hover {
     opacity: 1;
-    filter: invert(1);
+    color: var(--link-color);
 }
 
 /* MEDIA QUERIES */

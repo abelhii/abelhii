@@ -6,18 +6,29 @@ extraStyle: ../project.css
 ---
 
 <div class="project">
-    <a href="../../">home</a>
+    <a href="../../#portfolio">home</a>
     <div class="title">
         {{ projectTitle }}
     </div>
-    
+
     {% if headerImg %}
-    <div class="headerImg">
-        <img src="{{ headerImg }}">
-    </div>
+        <div class="headerImg">
+            <img src="{{ headerImg }}">
+        </div>
     {% endif %}
-    
+
     <div>
         {{ content | safe }}
+    </div>
+
+    <div class="footer">
+        <h1>More projects!</h1>
+        {% for project in collections.project %}
+            <article>
+                <h4>
+                    <a href="{{ project.url | url }}">{{ project.data.projectTitle }}</a>
+                </h4>
+            </article>
+        {% endfor %}
     </div>
 </div>

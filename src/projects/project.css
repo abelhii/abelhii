@@ -4,7 +4,7 @@
     justify-content: center;
     max-width: 60ch;
     margin: auto;
-    padding: 3rem 0;
+    padding: 4rem 0;
 }
 
 .project .title {
@@ -17,6 +17,11 @@
     object-fit: cover;
     object-position: center;
     padding-top: 1em;
+}
+
+.project .footer {
+    padding: 2rem;
+    background: antiquewhite;
 }
 
 @media (max-width: 600px) {

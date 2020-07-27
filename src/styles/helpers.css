@@ -9,6 +9,7 @@
     padding: 10px;
     border-radius: 15px;
     box-shadow: 2px 2px 1px silver;
+    pointer-events: none;
 }
 
 [data-tooltip]:hover:before {

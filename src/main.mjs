@@ -29,34 +29,22 @@ loadHtml('./sections/contact/index.html', '.contact');
 
 
 // Make Nav appear
-// var nav = document.querySelector('.navigation');
-// var body = document.querySelector('body');
-// var header = document.querySelector('.header').getBoundingClientRect();
+var nav = document.querySelector('.navigation');
+var header = document.querySelector('.header').getBoundingClientRect();
 
-// var locked = false;
-// // what should we do when scrolling occurs
-// var runOnScroll = function (evt) {
-//     if(locked) return;
-    
-//     // not the most exciting thing, but a thing nonetheless
-//     console.log(header);
-//     console.log(body);
-    
-//     // Display nav halfway through the header section
-//     if ((header.bottom / 2) <= body.offsetTop) {
-//         nav.classList.add('display');
-//     } else if (nav.classList.contains('display')) {
-//         nav.classList.remove('display');
-//     }
+var locked = false;
+// what should we do when scrolling occurs
+var runOnScroll = function (evt) {
+    if (locked) return;
 
-//     locked = false;
-// };
+    // Display nav halfway through the header section
+    if ((header.bottom / 2) <= window.scrollY) {
+        nav.classList.add('display');
+    } else if (nav.classList.contains('display')) {
+        nav.classList.remove('display');
+    }
 
-// // grab elements as array, rather than as NodeList
-// var elements = document.querySelectorAll('body');
-// elements = Array.prototype.slice.call(elements);
+    locked = false;
+};
 
-// // and then make each element do something on scroll
-// elements.forEach(function (element) {
-//     window.addEventListener("scroll", runOnScroll, { passive: true });
-// });
+window.addEventListener("scroll", runOnScroll, { passive: true });
