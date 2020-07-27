@@ -4,4 +4,27 @@
     justify-content: center;
     max-width: 60ch;
     margin: auto;
+    padding: 3rem 0;
+}
+
+.project .title {
+    font-weight: 600;
+}
+
+.project img {
+    max-height: 300px;
+    width: 100%;
+    object-fit: cover;
+    object-position: center;
+    padding-top: 1em;
+}
+
+@media (max-width: 600px) {
+    .project {
+        padding: 2rem;
+    }
+    
+    .project img {
+        max-height: 200px;
+    }
 }

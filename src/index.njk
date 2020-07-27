@@ -6,7 +6,7 @@ styleURL: style.css
 pagination:
   data: collections.project
   size: 10
-  reverse: true
+  reverse: false
   alias: projects
 ---
 <div class="container">
@@ -17,15 +17,15 @@ pagination:
             <div class="title">
                 <h3>Here are some things.</h3>
             </div>
-            {% for project in projects %}
-                <article>
-                    <div class="title">
-                        <h3>
+            <div class="content">
+                {% for project in projects %}
+                    <article>
+                        <h4>
                             <a href="{{ project.url | url }}">{{ project.data.projectTitle }}</a>
-                        </h3>
-                    </div>
-                </article>
-            {% endfor %}
+                        </h4>
+                    </article>
+                {% endfor %}
+            </div>
         </div>
     </div>
     <div id="contact" class="contact section" data-hash="contact"></div>

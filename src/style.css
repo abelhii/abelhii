@@ -25,10 +25,13 @@
 html,
 body {
     font-family: 'Muli';
-    font-size: var(--font-size);
     color: var(--text-color);
     margin: 0;
     overflow-x: hidden;
+}
+
+p {
+    max-width: 60ch;
 }
 
 a {
@@ -42,8 +45,9 @@ a:hover {
 }
 
 .title {
-    position: relative;
+    font-family: 'Comfortaa', cursive;
     font-size: var(--title-font-size);
+    position: relative;
 }
 
 .subtitle {

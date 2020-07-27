@@ -7,8 +7,17 @@ extraStyle: ../project.css
 
 <div class="project">
     <a href="../../">home</a>
-
-    <h1>{{ projectTitle }}</h1>
-
-    {{ content | safe }}
+    <div class="title">
+        {{ projectTitle }}
+    </div>
+    
+    {% if headerImg %}
+    <div class="headerImg">
+        <img src="{{ headerImg }}">
+    </div>
+    {% endif %}
+    
+    <div>
+        {{ content | safe }}
+    </div>
 </div>
