@@ -5,7 +5,9 @@ tags: ["javascript", "google maps", "bootstrap", "responsive", "project"]
 headerImg: ../../assets/images/timemap.png
 ---
 
+<!-- excerpt start -->
 This was for my final year project where I created a timetable-map web app for my university campus.
+<!-- excerpt end -->
 
 ## The problem
 

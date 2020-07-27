@@ -20,9 +20,13 @@ pagination:
             <div class="content">
                 {% for project in projects %}
                     <article>
-                        <h4>
-                            <a href="{{ project.url | url }}">{{ project.data.projectTitle }}</a>
-                        </h4>
+                        <img src="{{ project.data.headerImg }}">
+                        <h2>{{ project.data.projectTitle }}</h2>
+                        <time datetime="{{ project.date | dateIso }}">{{ project.date | dateReadable }}</time>
+                        <p>
+                            {% excerpt project %}
+                        </p>
+                        <a href="{{ project.url | url }}" aria-label="Read more on {{ project.data.title }}">Read more</a>
                     </article>
                 {% endfor %}
             </div>

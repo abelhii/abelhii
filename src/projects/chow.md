@@ -5,7 +5,9 @@ tags: ["ionic", "angular", "responsive", "project"]
 headerImg: ../../assets/images/chow.png
 ---
 
+<!-- excerpt start -->
 This is a personal project I took on to improve my knowledge in Angular and mobile design.
+<!-- excerpt end -->
 
 ## The problem
 
