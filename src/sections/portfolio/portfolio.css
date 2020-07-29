@@ -9,41 +9,6 @@
     padding: 4rem 1rem;
 }
 
-/* Portfolio grid */
-.portfolio .content {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    font-size: var(--font-size);
-    gap: 6rem;
-    margin: 6rem 0;
-}
-
-.portfolio .content article { 
-    position: relative;
-    padding-bottom: 2rem;
-}
-
-.portfolio .content img {
-    max-height: 150px;
-    width: 100%;
-    object-fit: cover;
-    object-position: top;
-}
-.portfolio .content h2 {
-    font-weight: 600;
-    margin: 0;
-}
-.portfolio .content time,
-.portfolio .content p {
-    font-size: var(--md-font-size);
-}
-.portfolio .content a {
-    position: absolute;
-    bottom: 0;
-}
-/* Portfolio grid end */
-
-
 .portfolio .title,
 .portfolio .content {
     padding: 0rem 8rem;
