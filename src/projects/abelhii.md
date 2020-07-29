@@ -2,7 +2,7 @@
 layout: project.njk
 projectTitle: abelhii.com
 tags:
-    ["javascript", "static site generator", "eleventy", "responsive", "project"]
+    ["javascript", "eleventy", "responsive", "project"]
 headerImg: https://images.unsplash.com/flagged/photo-1566127992631-137a642a90f4?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80
 ---
 

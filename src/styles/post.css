@@ -1,4 +1,4 @@
-.project {
+.post {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -7,11 +7,11 @@
     padding: 4rem 0;
 }
 
-.project .title {
+.post .title {
     font-weight: 600;
 }
 
-.project img {
+.post img {
     max-height: 300px;
     width: 100%;
     object-fit: cover;

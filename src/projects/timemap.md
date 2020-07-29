@@ -1,7 +1,7 @@
 ---
 layout: project.njk
 projectTitle: Time Map - where is my next class?
-tags: ["javascript", "google maps", "bootstrap", "responsive", "project"]
+tags: ["javascript", "google-maps", "bootstrap", "responsive", "project"]
 headerImg: ../../assets/images/timemap.png
 ---
 

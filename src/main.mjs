@@ -2,7 +2,7 @@ import { loadHtml, getRandomInt, isVowel } from './scripts/helper.mjs'
 
 // CONSTS
 const adjectives = ["irish", "malaysian", "wonderful", "affectionate", "adventurous", "ambitious", "creative", "passionate", "full stack"];
-const nouns = ["nerd", "designer", "coder", "gamer", "developer", "programmer", "monkey", "geek", "engineer", "man", "tinkerer"];
+const nouns = ["nerd", "designer", "coder", "gamer", "developer", "programmer", "geek", "engineer", "man", "tinkerer"];
 
 // LOAD HTML
 loadHtml('./sections/header/index.html', '.header').then(() => {
@@ -32,19 +32,13 @@ loadHtml('./sections/contact/index.html', '.contact');
 var nav = document.querySelector('.navigation');
 var header = document.querySelector('.header').getBoundingClientRect();
 
-var locked = false;
-// what should we do when scrolling occurs
 var runOnScroll = function (evt) {
-    if (locked) return;
-
     // Display nav halfway through the header section
     if ((header.bottom / 2) <= window.scrollY) {
         nav.classList.add('display');
     } else if (nav.classList.contains('display')) {
         nav.classList.remove('display');
     }
-
-    locked = false;
 };
 
-window.addEventListener("scroll", runOnScroll, { passive: true });
+window.addEventListener("scroll", runOnScroll);

@@ -54,6 +54,7 @@
 .tag {
     position: relative;
     cursor: pointer;
+    color: var(--third-color); 
 }
 
 .tag:after {
@@ -67,9 +68,8 @@
     transition: all ease 0.3s;
 }
 
-.tag:hover:after {
-    width: 100%;
-}
+.tag:hover { color: var(--third-color); }
+.tag:hover:after { width: 100%; }
 
 /* Media Queries */
 @media (max-width: 1024px) {

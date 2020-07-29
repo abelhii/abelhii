@@ -1,0 +1,29 @@
+---
+layout: base.njk
+faviconURL: ../../assets/favicon/favicon.ico
+styleURL: ../../style.css
+
+pagination:
+  data: collections
+  size: 1
+  alias: tag
+permalink: /tags/{{ tag }}/
+---
+
+<div class="post">
+    <a href="../../" style="margin-bottom: 1rem;">🏡 home</a>
+    <div class="title">
+        Posts tagged <span style="color: var(--third-color);">“{{ tag }}”</span>
+    </div>
+
+    <ol>
+        {% set taglist = collections[tag] %}
+        {% for post in taglist | reverse %}
+            <li>
+                <a href="{{ post.url | url }}">{{ post.data.projectTitle }}</a>
+            </li>
+        {% endfor %}
+    </ol>
+    
+    <p>See <a href="{{ '/tags/' | url }}">all tags</a>.</p>
+</div>
