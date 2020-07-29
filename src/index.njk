@@ -17,16 +17,24 @@ pagination:
             <div class="title">
                 <h3>Here are some things.</h3>
             </div>
-            <div class="content">
+            <div class="projects">
                 {% for project in projects %}
                     <article>
                         <img src="{{ project.data.headerImg }}">
                         <h2>{{ project.data.projectTitle }}</h2>
                         <time datetime="{{ project.date | dateIso }}">{{ project.date | dateReadable }}</time>
+
                         <p>
                             {% excerpt project %}
                         </p>
-                        <a href="{{ project.url | url }}" aria-label="Read more on {{ project.data.title }}">Read more</a>
+
+                        <div class="tags">
+                            <i class="fas fa-tags"></i>
+                            {% for tag in project.data.tags %}
+                                <a class="tag" href="{{'/tags/' + tag | url}}">{{ tag }}</a>
+                            {% endfor %}
+                        </div>
+                        <a class="read-more" href="{{ project.url | url }}" aria-label="Read more on {{ project.data.title }}">Read more</a>
                     </article>
                 {% endfor %}
             </div>

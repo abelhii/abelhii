@@ -2,97 +2,69 @@
     min-height: 100vh;
     height: auto !important;
     color: var(--inverse-text-color);
-    background-color: #4F37B0;
+    background-color: var(--fifth-color);
 }
 
 .portfolio .section-padding { 
     padding: 4rem 8rem;
 }
 
-.portfolio .content {
+.projects {
     display: grid;
     grid-template-columns: 1fr 1fr;
     font-size: var(--font-size);
-    gap: 4rem;
+    column-gap: 4rem;
+    row-gap: 6rem;
     margin: 4rem 0;
 }
 
-.portfolio .content article { 
+.projects article { 
     position: relative;
     padding-bottom: 2rem;
+    max-width: 40ch;
 }
 
-.portfolio .content img {
-    max-height: 150px;
+.projects img {
+    max-height: 100px !important;
     width: 100%;
     object-fit: cover;
     object-position: top;
 }
-.portfolio .content h2 {
+.projects h2 {
     font-weight: 600;
     margin: 0;
 }
-.portfolio .content time,
-.portfolio .content p {
+.projects time,
+.projects p {
     font-size: var(--md-font-size);
 }
-.portfolio .content a {
+.projects .read-more {
     position: absolute;
     bottom: 0;
 }
-
-
-.tags {
-    display: flex;
-    flex-wrap: wrap;
-    margin: 1rem 0;
-    gap: 1rem;
-    font-weight: 600;
-    color: var(--third-color); 
-}
-
-.tag {
-    position: relative;
-    cursor: pointer;
-    color: var(--third-color); 
-}
-
-.tag:after {
-    content: '';
-    display: block;
-    position: absolute;
-    height: 2px;
-    bottom: 0;
-    width: 0;
-    background-color: var(--third-color);
-    transition: all ease 0.3s;
-}
-
-.tag:hover { color: var(--third-color); }
-.tag:hover:after { width: 100%; }
 
 /* Media Queries */
-@media (max-width: 1024px) {
+@media (max-width: 1200px) {
     .portfolio .section-padding {
         padding: 4rem 4rem;
     }
 
-    .portfolio .content {
+    .projects {
         font-size: var(--md-font-size);
     }
 
-    .portfolio .content time,
-    .portfolio .content p {
+    .projects time,
+    .projects p {
         font-size: var(--sm-font-size);
     }
 }
 
-@media (max-width: 600px) {
+@media (max-width: 700px) {
     .portfolio .section-padding {
         padding: 2rem 2rem;
     }
 
-    .portfolio .content {
+    .projects {
         grid-template-columns: 1fr;
     }
 }

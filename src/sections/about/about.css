@@ -6,7 +6,7 @@
 }
 
 .about .content {
-    font-size: var(--md-font-size);
+    font-size: var(--font-size);
 }
 
 /* TIMELINE */
@@ -62,7 +62,7 @@
     }
 
     .about .content {
-        font-size: var(--sm-font-size);
+        font-size: var(--md-font-size);
     }
 
     /* Bullet point */

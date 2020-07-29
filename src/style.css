@@ -2,7 +2,6 @@
 @import "./styles/nav.css";
 @import "./styles/abelavatar.css";
 @import "./styles/portfolio.css";
-@import "./styles/post.css";
 @import "./sections/header/header.css";
 @import "./sections/about/about.css";
 @import "./sections/contact/contact.css";
@@ -13,13 +12,14 @@
 	--secondary-color: #fefb38;
 	--third-color: #24ba78;
 	--fourth-color: #ff00a1;
+    --fifth-color: #4F37B0;
 	--text-color: #444444;
 	--inverse-text-color: #dddddd;
 	--link-color: #00cfff;
 	--title-font-size: 48px;
 	--lg-font-size: 32px;
-	--font-size: 24px;
-	--md-font-size: 20px;
+	--font-size: 21px;
+	--md-font-size: 18px;
 	--sm-font-size: 16px;
 }
 
@@ -29,11 +29,12 @@ body {
 	color: var(--text-color);
 	margin: 0;
     overflow-x: hidden;
-    scroll-behavior: smooth;
+	scroll-behavior: smooth;
 }
 
 p {
 	max-width: 60ch;
+	line-height: 1.8rem;
 }
 
 a {
@@ -92,6 +93,40 @@ table th {
 .section-padding {
 	padding: 4rem 16rem;
 }
+
+/* TAGS */
+
+.tags {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 0.5rem 0;
+    gap: 1rem;
+    font-weight: 600;
+    font-size: var(--sm-font-size);
+    color: var(--third-color); 
+}
+
+.tag {
+    position: relative;
+    cursor: pointer;
+    color: var(--third-color);
+}
+
+.tag:after {
+    content: '';
+    display: block;
+    position: absolute;
+    height: 2px;
+    bottom: 0;
+    width: 0;
+    background-color: var(--third-color);
+    transition: all ease 0.3s;
+}
+
+.tag:hover { color: var(--third-color); }
+.tag:hover:after { width: 100%; }
+
+/* End TAGS */
 
 /* MEDIA QUERIES */
 
