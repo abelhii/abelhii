@@ -29,10 +29,12 @@ abelavatar.forEach(function (el) {
         if (badge.isActive()) {
             badge.pause();
             badgeShadow[0].classList.remove("pink-fill");
+            firebase.analytics().logEvent('click_face', {active: false});
         }
         else {
             badge.play();
             badgeShadow[0].classList.add("pink-fill");
+            firebase.analytics().logEvent('click_face', {active: true});
         }
     });
 })

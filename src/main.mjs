@@ -26,8 +26,6 @@ loadHtml('./sections/about/index.html', '.about');
 // loadHtml('./sections/portfolio/index.html', '.portfolio');
 loadHtml('./sections/contact/index.html', '.contact');
 
-
-
 // Make Nav appear
 var nav = document.querySelector('.navigation');
 var header = document.querySelector('.header').getBoundingClientRect();

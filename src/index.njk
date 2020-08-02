@@ -34,7 +34,7 @@ pagination:
                                 <a class="tag" href="{{'/tags/' + tag | url}}">{{ tag }}</a>
                             {% endfor %}
                         </div>
-                        <a class="read-more" href="{{ project.url | url }}" aria-label="Read more on {{ project.data.title }}">Read more</a>
+                        <a class="read-more" href="{{ project.url | url }}" onclick="firebase.analytics().logEvent('read_more', { post: '{{ project.data.projectTitle }}' });" aria-label="Read more on {{ project.data.projectTitle }}">Read more</a>
                     </article>
                 {% endfor %}
             </div>

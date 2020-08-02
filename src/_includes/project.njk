@@ -33,12 +33,12 @@ extraStyle: ../../styles/post.css
 {% set nextProject = collections.project | getNextCollectionItem(page) %}
 <div class="footer">
     {% if previousProject.url %}
-        <a class="prevProj" href="{{ previousProject.url | url }}">
+        <a class="prevProj" href="{{ previousProject.url | url }}" onclick="firebase.analytics().logEvent('prev_project', { post: '{{ previousProject.data.projectTitle }}' });">
             <i class="fas fa-long-arrow-alt-left"></i>
             prev project
         </a>
     {% else %}
-        <a class="prevProj" href="{{ collections.project[collections.project.length - 1].url | url }}">
+        <a class="prevProj" href="{{ collections.project[collections.project.length - 1].url | url }}" onclick="firebase.analytics().logEvent('prev_project', { post: '{{ collections.project[collections.project.length - 1].data.projectTitle }}' });">
             <i class="fas fa-long-arrow-alt-left"></i>
             prev project
         </a>
@@ -47,11 +47,11 @@ extraStyle: ../../styles/post.css
     <h2>💻 more stuff! 💻</h2>
 
     {% if nextProject.url %}
-        <a class="nextProj" href="{{ nextProject.url }} ">next project
+        <a class="nextProj" href="{{ nextProject.url }} " onclick="firebase.analytics().logEvent('next_project', { post: '{{ nextProject.data.projectTitle }}' });">next project
             <i class="fas fa-long-arrow-alt-right"></i>
         </a>
     {% else %}
-        <a class="nextProj" href="{{ collections.project[0].url }}">next project
+        <a class="nextProj" href="{{ collections.project[0].url }}" onclick="firebase.analytics().logEvent('next_project', { post: '{{ collections.project[0].data.projectTitle }}' });">next project
             <i class="fas fa-long-arrow-alt-right"></i>
         </a>
     {% endif %}
