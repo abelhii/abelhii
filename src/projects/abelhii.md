@@ -1,13 +1,14 @@
 ---
 layout: project.njk
 projectTitle: abelhii.com
-tags:
-    ["javascript", "eleventy", "responsive", "project"]
+tags: ["javascript", "eleventy", "responsive", "project"]
 headerImg: https://images.unsplash.com/flagged/photo-1566127992631-137a642a90f4?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80
 ---
 
 <!-- excerpt start -->
+
 I originally built this website as a way to showcase my experience and also as a test to myself to build something great using only vanilla javascript, html and css.
+
 <!-- excerpt end -->
 
 It has since evolved into a playground that I'm using as a way to play with new technologies that I come across such as `Eleventy` and `Greensock`.

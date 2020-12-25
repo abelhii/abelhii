@@ -4,16 +4,11 @@ const badge = gsap.timeline({
     paused: true,
 });
 
-badge
-    .to(
-        ".badge, .badge-shadow",
-        15,
-        {
-            rotation: '360',
-            ease: Linear.easeNone,
-            transformOrigin: 'center'
-        }
-    )
+badge.to(".badge, .badge-shadow", 15, {
+    rotation: "360",
+    ease: Linear.easeNone,
+    transformOrigin: "center",
+});
 
 const badgeShadow = document.querySelectorAll(".badge-shadow");
 const abelavatar = document.querySelectorAll("#abelavatar");
@@ -29,17 +24,14 @@ abelavatar.forEach(function (el) {
         if (badge.isActive()) {
             badge.pause();
             badgeShadow[0].classList.remove("pink-fill");
-            firebase.analytics().logEvent('click_face', {active: false});
-        }
-        else {
+            firebase.analytics().logEvent("click_face", { active: false });
+        } else {
             badge.play();
             badgeShadow[0].classList.add("pink-fill");
-            firebase.analytics().logEvent('click_face', {active: true});
+            firebase.analytics().logEvent("click_face", { active: true });
         }
     });
-})
-
-
+});
 
 const blink = gsap.timeline({
     repeat: -1,

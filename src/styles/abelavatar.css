@@ -15,7 +15,7 @@
 }
 
 .pink-fill {
-    fill: var(--fourth-color) !important
+    fill: var(--fourth-color) !important;
 }
 
 @media (max-width: 1024px) {

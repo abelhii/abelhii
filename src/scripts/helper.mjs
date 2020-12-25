@@ -1,21 +1,20 @@
 /**
  * gets a random number in between specified min and max
  * defaults to 0-1
- * @param {*} min 
- * @param {*} max 
+ * @param {*} min
+ * @param {*} max
  */
 function getRandomInt(min, max) {
-    if (!max)
-        min = 0, max = 1;
+    if (!max) (min = 0), (max = 1);
     return Math.floor(Math.random() * (max - min) + min);
 }
 
 /**
  * check if letter is a vowel
- * @param {*} letter 
+ * @param {*} letter
  */
 function isVowel(letter) {
-    return (/^[aeiou]$/i).test(letter);
+    return /^[aeiou]$/i.test(letter);
 }
 
 /**
@@ -24,8 +23,8 @@ function isVowel(letter) {
  * @param {*} className classname to insert innerHTML
  */
 async function loadHtml(url, className) {
-    if (className && className[0] != '.') {
-        className = '.' + className;
+    if (className && className[0] != ".") {
+        className = "." + className;
     }
 
     let response = await fetch(url);

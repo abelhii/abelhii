@@ -6,9 +6,11 @@ headerImg: ../../assets/images/stampngo.png
 ---
 
 <!-- excerpt start -->
+
 Stamp n Go was a CSR initiative by my company, InfinitiLab to give back to the community.
 I volunteered to do this project along with my boss, during the early stages of COVID-19 as I
 wanted to contribute to the efforts of flattening the curve.
+
 <!-- excerpt end -->
 
 ## The Problem
