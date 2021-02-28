@@ -7,8 +7,13 @@
     background-color: var(--secondary-color);
 }
 
-.contact .title {
+.contact .title,
+.contact small {
     text-align: center;
+}
+
+.contact .title h2 {
+    margin-bottom: 0;
 }
 
 .contact .title h2 a {
@@ -19,12 +24,17 @@
     opacity: 0;
     margin-right: -0.95em;
     transition: all 0.25s ease;
-    content: 'V';
+    content: "V";
 }
 
 .contact .title h2 a:hover:after {
     opacity: 1;
     margin-right: -0.3em;
+}
+
+.contact small {
+    display: block;
+    margin-bottom: 1em;
 }
 
 .contact .content {

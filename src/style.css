@@ -8,11 +8,11 @@
 
 /* https://paletton.com/#uid=34b0u0kvou7jGB6oXvWxjnMDviB */
 :root {
-    --primary-color: #3317a6;
-    --secondary-color: #fefb38;
+    --primary-color: #252eb0;
+    --secondary-color: #ffe847;
     --third-color: #24ba78;
-    --fourth-color: #ff00a1;
-    --fifth-color: #6211BD;
+    --fourth-color: #ff5f53;
+    --fifth-color: #181f80;
     --text-color: #444444;
     --inverse-text-color: #dddddd;
     --link-color: #00cfff;
@@ -21,6 +21,8 @@
     --font-size: 21px;
     --md-font-size: 18px;
     --sm-font-size: 16px;
+
+    --left-right-padding: 0 15%;
 }
 
 html,
@@ -88,6 +90,7 @@ table th {
 
 .section {
     height: 100vh;
+    padding: var(--left-right-padding);
 }
 
 .section-padding {
@@ -135,7 +138,11 @@ table th {
 /* MEDIA QUERIES */
 
 /* For laptops and lower */
-@media (max-width: 1024px) {
+@media (max-width: 1800px) {
+    .section {
+        --left-right-padding: 0 0;
+    }
+
     .section-padding {
         padding: 4rem 8rem;
     }
