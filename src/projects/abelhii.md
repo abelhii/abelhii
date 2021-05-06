@@ -26,12 +26,12 @@ I am still evolving this site and will continue to as long as I keep finding new
 
 #### What I've learned (so far):
 
-| Technology                                                                                  | Description                                                                    |
-| ------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------ |
-| [CSS scroll snap](https://developer.mozilla.org/en-US/docs/Web/CSS/scroll-snap-type)        | Easy-to-use snapping animations!                                               |
-| [CSS grid](https://youtu.be/7kVeCqQCxlk)                                                    | CSS GRID IS SO GOOD                                                            |
-| [JavaScript modules](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Modules) | A module may contain a class or a library of functions for a specific purpose  |
-| [Greensock](https://www.cassie.codes/posts/making-a-lil-me-part-1/)                         | Great SVG animations are so much easier than I thought (with a great tutorial) |
-| [SVG animation](https://codepen.io/abelhii/pen/XWXGBJR)                                     | Had a fun time creating this avatar of myself                                  |
-| [eleventy](https://www.11ty.dev/)                                                           | Eleventy is my first time using a static site generator!                       |
-| [Markdown](https://daringfireball.net/projects/markdown/syntax)                             | Markdown is a lightweight markup language with plain-text-formatting syntax    |
+| Technology                                                                                  | Description                                                                                                        |
+| ------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------ |
+| [CSS scroll snap](https://developer.mozilla.org/en-US/docs/Web/CSS/scroll-snap-type)        | Easy-to-use snapping animations!                                                                                   |
+| [CSS grid](https://youtu.be/7kVeCqQCxlk)                                                    | CSS GRID IS SO GOOD                                                                                                |
+| [JavaScript modules](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Modules) | A module may contain a class or a library of functions for a specific purpose                                      |
+| [Greensock](https://www.cassie.codes/posts/making-a-lil-me-part-1/)                         | Great SVG animations are so much easier than I thought (with a great tutorial)                                     |
+| [SVG animation](https://codepen.io/abelhii/pen/XWXGBJR)                                     | Had a fun time creating this avatar of myself - took a lot of inspiration from [cassie](https://www.cassie.codes/) |
+| [eleventy](https://www.11ty.dev/)                                                           | Eleventy is my first time using a static site generator!                                                           |
+| [Markdown](https://daringfireball.net/projects/markdown/syntax)                             | Markdown is a lightweight markup language with plain-text-formatting syntax                                        |
