@@ -12,4 +12,9 @@ export default defineConfig({
     react(),
     tsconfigPaths(),
   ],
+  server: {
+    watch: {
+      usePolling: true
+    }
+  }
 });
