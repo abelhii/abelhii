@@ -70,3 +70,6 @@ jobs:
         run: pnpm run deploy
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CF_API_TOKEN }}
+          # Signal to the build that we are compiling for Cloudflare Workers so
+          # native Node modules (sharp, postgres) are skipped during bundling.
+          BUILD_FOR_CLOUDFLARE: '1'
