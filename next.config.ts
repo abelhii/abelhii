@@ -6,3 +6,6 @@ const nextConfig: NextConfig = {
 };
 
 export default withPayload(nextConfig);
+
+import { initOpenNextCloudflareForDev } from "@opennextjs/cloudflare";
+initOpenNextCloudflareForDev();

@@ -35,56 +35,41 @@ jobs:
       - name: Lint
         run: pnpm run lint
 
-      - name: Run tests (if configured)
-        run: |
-          if pnpm -s test --silent 2>/dev/null; then
-            pnpm test
-          else
-            echo "No test script configured; skipping."
-          fi
 
-      - name: Type check (if TypeScript enabled)
-        run: |
-          if [ -f tsconfig.json ]; then
-            pnpm -s run typecheck || pnpm exec tsc --noEmit
-          else
-            echo "No tsconfig.json; skipping typecheck."
-          fi
+  deploy:
+    name: Deploy to Cloudflare ☁️
+    needs: code-quality
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
 
-  # deploy:
-  #   name: Deploy to Cloudflare ☁️
-  #   needs: code-quality
-  #   runs-on: ubuntu-latest
-  #   steps:
-  #     - uses: actions/checkout@v4
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
 
-  #     - name: Setup Node.js
-  #       uses: actions/setup-node@v4
-  #       with:
-  #         node-version: 20
+  
+      - name: Check pnpm
+        run: pnpm --version
 
-  #
-  #     - name: Check pnpm
-  #       run: pnpm --version
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
 
-  #     - name: Install dependencies
-  #       run: pnpm install --frozen-lockfile
+      - name: Build
+        run: pnpm run build
 
-  #     - name: Build
-  #       run: pnpm run build
+      # Option A: Cloudflare Pages (simple static / Pages Functions)
+      - name: Deploy to Cloudflare Pages
+        uses: cloudflare/pages-action@v1
+        with:
+          apiToken: ${{ secrets.CF_API_TOKEN }}
+          accountId: ${{ secrets.CF_ACCOUNT_ID }}
+          projectName: ${{ secrets.CF_PAGES_PROJECT_NAME }}
+          directory: './out' # adjust to the directory your build produces (e.g., ./out, ./.next, .vercel/output)
 
-  #     # Option A: Cloudflare Pages (simple static / Pages Functions)
-  #     - name: Deploy to Cloudflare Pages
-  #       uses: cloudflare/pages-action@v1
-  #       with:
-  #         apiToken: ${{ secrets.CF_API_TOKEN }}
-  #         accountId: ${{ secrets.CF_ACCOUNT_ID }}
-  #         projectName: ${{ secrets.CF_PAGES_PROJECT_NAME }}
-  #         directory: './out' # adjust to the directory your build produces (e.g., ./out, ./.next, .vercel/output)
-
-  #     # Option B: Wrangler (Workers / Pages via Wrangler)
-  #     # - name: Publish with Wrangler
-  #     #   uses: cloudflare/wrangler-action@v1
-  #     #   with:
-  #     #     apiToken: ${{ secrets.CF_API_TOKEN }}
-  #     #     command: 'pages publish ./out --project-name your-project-name'
+      # Option B: Wrangler (Workers / Pages via Wrangler)
+      # - name: Publish with Wrangler
+      #   uses: cloudflare/wrangler-action@v1
+      #   with:
+      #     apiToken: ${{ secrets.CF_API_TOKEN }}
+      #     command: 'pages publish ./out --project-name your-project-name'
