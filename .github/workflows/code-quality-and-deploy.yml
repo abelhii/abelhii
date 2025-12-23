@@ -66,21 +66,7 @@ jobs:
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
 
-      - name: Build
-        run: pnpm run build
-
-      # Option A: Cloudflare Pages (simple static / Pages Functions)
-      # - name: Deploy to Cloudflare Pages
-      #   uses: cloudflare/pages-action@v1
-      #   with:
-      #     apiToken: ${{ secrets.CF_API_TOKEN }}
-      #     accountId: ${{ secrets.CF_ACCOUNT_ID }}
-      #     projectName: ${{ secrets.CF_PAGES_PROJECT_NAME }}
-      #     directory: './out' # adjust to the directory your build produces (e.g., ./out, ./.next, .vercel/output)
-
-      # Option B: Wrangler (Workers / Pages via Wrangler)
-      - name: Deploy Worker with Wrangler
-        uses: cloudflare/wrangler-action@v3
-        with:
-          apiToken: ${{ secrets.CF_API_TOKEN }}
-          command: 'deploy'
+      - name: Deploy (using package script)
+        run: pnpm run deploy
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CF_API_TOKEN }}
