@@ -15,7 +15,7 @@
   ],
   "assets": {
     "directory": ".open-next/assets",
-    "binding": "ASSETS",
+    "binding": "APP_ASSETS",
   },
   // Directory used by Pages to find the static build output
   "pages_build_output_dir": "out",
