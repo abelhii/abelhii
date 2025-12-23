@@ -4,13 +4,14 @@ import { getPayload } from 'payload'
 import { fileURLToPath } from 'url'
 
 import config from '@/payload.config'
-import './styles.css'
+import { Button } from '@/components/ui/button'
 
 export default async function HomePage() {
   const headers = await getHeaders()
   const payloadConfig = await config
   const payload = await getPayload({ config: payloadConfig })
-  const { user } = await payload.auth({ headers })
+  const authHeaders = await payload.auth({ headers })
+  const user = authHeaders.user
 
   const fileURL = `vscode://file/${fileURLToPath(import.meta.url)}`
 
@@ -27,7 +28,8 @@ export default async function HomePage() {
           />
         </picture>
         {!user && <h1>Welcome to your new project.</h1>}
-        {user && <h1>Welcome back, {user.email}</h1>}
+        {user && <h1 className="text-xs font-bold underline">Welcome back, {user.email}</h1>}
+        <Button variant="outline">test button</Button>
         <div className="links">
           <a
             className="admin"
