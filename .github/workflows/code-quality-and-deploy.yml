@@ -26,9 +26,6 @@ jobs:
           version: 10
           cache: true
 
-      - name: Check pnpm
-        run: pnpm --version
-
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
 
@@ -48,9 +45,14 @@ jobs:
         with:
           node-version: 20
 
-  
-      - name: Check pnpm
-        run: pnpm --version
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - uses: pnpm/action-setup@v4
+        name: Install pnpm
+        with:
+          version: 10
+          cache: true
 
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
@@ -59,17 +61,17 @@ jobs:
         run: pnpm run build
 
       # Option A: Cloudflare Pages (simple static / Pages Functions)
-      - name: Deploy to Cloudflare Pages
-        uses: cloudflare/pages-action@v1
-        with:
-          apiToken: ${{ secrets.CF_API_TOKEN }}
-          accountId: ${{ secrets.CF_ACCOUNT_ID }}
-          projectName: ${{ secrets.CF_PAGES_PROJECT_NAME }}
-          directory: './out' # adjust to the directory your build produces (e.g., ./out, ./.next, .vercel/output)
-
-      # Option B: Wrangler (Workers / Pages via Wrangler)
-      # - name: Publish with Wrangler
-      #   uses: cloudflare/wrangler-action@v1
+      # - name: Deploy to Cloudflare Pages
+      #   uses: cloudflare/pages-action@v1
       #   with:
       #     apiToken: ${{ secrets.CF_API_TOKEN }}
-      #     command: 'pages publish ./out --project-name your-project-name'
+      #     accountId: ${{ secrets.CF_ACCOUNT_ID }}
+      #     projectName: ${{ secrets.CF_PAGES_PROJECT_NAME }}
+      #     directory: './out' # adjust to the directory your build produces (e.g., ./out, ./.next, .vercel/output)
+
+      # Option B: Wrangler (Workers / Pages via Wrangler)
+      - name: Publish with Wrangler
+        uses: cloudflare/wrangler-action@v1
+        with:
+          apiToken: ${{ secrets.CF_API_TOKEN }}
+          command: 'pages publish ./out --project-name abelhii'
