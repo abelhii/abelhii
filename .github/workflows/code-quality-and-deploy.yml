@@ -44,6 +44,8 @@ jobs:
       SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
       SUPABASE_PUBLISHABLE_DEFAULT_KEY: ${{ secrets.SUPABASE_PUBLISHABLE_DEFAULT_KEY }}
       CF_API_TOKEN: ${{ secrets.CF_API_TOKEN }}
+      # Wrangler expects CLOUDFLARE_API_TOKEN in non-interactive environments
+      CLOUDFLARE_API_TOKEN: ${{ secrets.CF_API_TOKEN }}
     steps:
       - uses: actions/checkout@v4
 
@@ -81,4 +83,4 @@ jobs:
         uses: cloudflare/wrangler-action@v3
         with:
           apiToken: ${{ secrets.CF_API_TOKEN }}
-          command: 'pages publish ./out --project-name abelhii'
+          command: 'pages deploy ./out --project-name abelhii'
