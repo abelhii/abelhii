@@ -71,7 +71,7 @@ jobs:
 
       # Option B: Wrangler (Workers / Pages via Wrangler)
       - name: Publish with Wrangler
-        uses: cloudflare/wrangler-action@v1
+        uses: cloudflare/wrangler-action@v3
         with:
           apiToken: ${{ secrets.CF_API_TOKEN }}
           command: 'pages publish ./out --project-name abelhii'
