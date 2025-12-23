@@ -79,8 +79,8 @@ jobs:
       #     directory: './out' # adjust to the directory your build produces (e.g., ./out, ./.next, .vercel/output)
 
       # Option B: Wrangler (Workers / Pages via Wrangler)
-      - name: Publish with Wrangler
+      - name: Deploy Worker with Wrangler
         uses: cloudflare/wrangler-action@v3
         with:
           apiToken: ${{ secrets.CF_API_TOKEN }}
-          command: 'pages deploy ./out --project-name abelhii'
+          command: 'deploy'
