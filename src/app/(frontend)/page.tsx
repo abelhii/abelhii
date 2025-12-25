@@ -18,16 +18,14 @@ export default async function HomePage() {
 
   return (
     <div className="flex flex-col items-center justify-center min-h-screen min-w-screen">
-      <div className="w-screen h-[80vh]">
-        <Hero />
-      </div>
+      <Hero />
       <div className="content">
         <picture>
           <source srcSet="https://raw.githubusercontent.com/payloadcms/payload/main/packages/ui/src/assets/payload-favicon.svg" />
           <Image
+            src="https://raw.githubusercontent.com/payloadcms/payload/main/packages/ui/src/assets/payload-favicon.svg"
             alt="Payload Logo"
             height={65}
-            src="https://raw.githubusercontent.com/payloadcms/payload/main/packages/ui/src/assets/payload-favicon.svg"
             width={65}
           />
         </picture>

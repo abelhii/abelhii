@@ -6,7 +6,7 @@ import { useGLTF } from "@react-three/drei";
 import { JSX } from "react";
 
 export function AbelBust(props: JSX.IntrinsicElements["group"]) {
-  const { nodes, materials } = useGLTF("/abel-bust.glb");
+  const { nodes, materials } = useGLTF("https://fjvfwbnbufwhevhivldg.supabase.co/storage/v1/object/public/abelhii/abel-bust.glb");
 
   return (
     <group {...props} dispose={null}>
