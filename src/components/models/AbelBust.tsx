@@ -18,27 +18,19 @@ export function AbelBust(props: JSX.IntrinsicElements["group"]) {
         receiveShadow
         geometry={nodes.Cube.geometry}
         material={materials["Material.002"]}
-        position={[0, 1.311, -0.005]}
+        position={[0, 0, 0]}
       />
       <mesh
         castShadow
         receiveShadow
         geometry={nodes.Plane.geometry}
         material={materials["Hair.001"]}
-        position={[0.267, 1.677, 0.757]}
+        position={[0.267, 0.366, 0.762]}
         rotation={[1.585, -0.057, 0.018]}
         scale={[1.193, 1.222, 1.437]}
       />
-      <mesh
-        castShadow
-        receiveShadow
-        geometry={nodes.Hair.geometry}
-        material={materials["Hair.001"]}
-        position={[0, 1.472, -0.049]}
-        scale={[0.838, 0.778, 0.778]}
-      />
       <group
-        position={[0.252, 1.457, 0.685]}
+        position={[0.252, 0.146, 0.69]}
         rotation={[Math.PI / 2, 0, 0]}
         scale={-0.112}
       >
@@ -60,12 +52,22 @@ export function AbelBust(props: JSX.IntrinsicElements["group"]) {
         receiveShadow
         geometry={nodes.Glasses.geometry}
         material={materials["Material.005"]}
-        position={[0.334, 1.479, 0.83]}
+        position={[0.334, 0.168, 0.835]}
         rotation={[Math.PI / 2, 0, 0]}
         scale={0.169}
+      />
+      <mesh
+        castShadow
+        receiveShadow
+        geometry={nodes.Hair2.geometry}
+        material={materials["Hair.001"]}
+        position={[0, 0.185, -0.193]}
+        scale={[0.922, 0.751, 0.884]}
       />
     </group>
   );
 }
 
-useGLTF.preload("/abel-bust.glb");
+useGLTF.preload(
+  "https://fjvfwbnbufwhevhivldg.supabase.co/storage/v1/object/public/abelhii/abel-bust.glb"
+);
