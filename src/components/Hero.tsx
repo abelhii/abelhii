@@ -1,50 +1,52 @@
 "use client";
 
-import { OrbitControls, Stage, Stars } from "@react-three/drei";
-import { Canvas } from "@react-three/fiber";
+import { Stage, Stars, Text } from "@react-three/drei";
+import { Canvas, useFrame } from "@react-three/fiber";
 import Image from "next/image";
-import { useRef, useState, useEffect } from "react";
+import { useRef } from "react";
 import { ErrorBoundary } from "react-error-boundary";
+import { Group, Object3DEventMap, Points } from "three";
 
 import { cn } from "@/lib/shadcn.utils";
+import { useLerpedMouse } from "./hooks/use-lerped-mouse";
 import { AbelBust } from "./models/AbelBust";
 
 type HeroProps = { className?: string };
 
+function AbelFollowMouse() {
+  const ref = useRef<Group<Object3DEventMap> | null>(null);
+  const mouse = useLerpedMouse();
+  useFrame(() => {
+    if (ref.current === null) return;
+    ref.current.rotation.y = (mouse.current.x * Math.PI) / 10;
+    ref.current.rotation.x = (mouse.current.y * -Math.PI) / 10;
+  });
+
+  return <AbelBust ref={ref} />;
+}
+
+function Background() {
+  const ref = useRef<Points | null>(null);
+  useFrame((_, delta) => {
+    if (ref.current === null) return;
+    ref.current.rotation.y += delta * 0.02;
+  });
+
+  return (
+    <Stars
+      ref={ref}
+      fade
+      radius={100}
+      depth={10}
+      count={5000}
+      factor={20}
+      saturation={0}
+      speed={1.5}
+    />
+  );
+}
+
 export function Hero({ className }: HeroProps) {
-  const ref = useRef(null);
-  const [autoRotate, setAutoRotate] = useState(true);
-
-  // timeout ref to store the id so we can clear it
-  const timeoutRef = useRef<number | null>(null);
-
-  // clear timeout on unmount
-  useEffect(() => {
-    return () => {
-      if (timeoutRef.current) {
-        clearTimeout(timeoutRef.current);
-      }
-    };
-  }, []);
-
-  const handleStart = () => {
-    // stop auto-rotate immediately and clear any pending resume timers
-    setAutoRotate(false);
-    if (timeoutRef.current) {
-      clearTimeout(timeoutRef.current);
-      timeoutRef.current = null;
-    }
-  };
-
-  const handleEnd = () => {
-    // schedule re-enabling auto-rotate after 3s
-    if (timeoutRef.current) clearTimeout(timeoutRef.current);
-    timeoutRef.current = window.setTimeout(() => {
-      setAutoRotate(true);
-      timeoutRef.current = null;
-    }, 3000);
-  };
-
   return (
     <div
       className={cn(
@@ -62,32 +64,28 @@ export function Hero({ className }: HeroProps) {
           />
         }
       >
-        <Canvas dpr={[1, 2]} camera={{ fov: 50 }}>
-          <Stars
-            radius={100}
-            depth={50}
-            count={5000}
-            factor={12}
-            saturation={0}
-            fade
-            speed={2}
-          />
+        <Canvas dpr={[1, 2]} camera={{ fov: 50, position: [0, 0, 5] }}>
+          <Background />
+
+          <Text
+            position={[0, 2, -5]}
+            fontSize={1}
+            color="white"
+            material-fog={false}
+            letterSpacing={0}
+            
+          >
+            Welcome
+          </Text>
           <Stage
+            receiveShadow
             preset="soft"
             environment="sunset"
-            shadows={false}
-            intensity={1}
+            adjustCamera={false}
+            intensity={0.5}
           >
-            <AbelBust />
+            <AbelFollowMouse />
           </Stage>
-          <OrbitControls
-            ref={ref}
-            enableDamping
-            autoRotate={autoRotate}
-            enablePan={false}
-            onStart={handleStart}
-            onEnd={handleEnd}
-          />
         </Canvas>
       </ErrorBoundary>
     </div>
