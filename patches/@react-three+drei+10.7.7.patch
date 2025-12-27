@@ -1,0 +1,33 @@
+diff --git a/node_modules/@react-three/drei/web/ScrollControls.js b/node_modules/@react-three/drei/web/ScrollControls.js
+index 179169a..d52cd12 100644
+--- a/node_modules/@react-three/drei/web/ScrollControls.js
++++ b/node_modules/@react-three/drei/web/ScrollControls.js
+@@ -202,7 +202,27 @@ const ScrollHtml = /*#__PURE__*/React.forwardRef(({
+     height
+   } = useThree(state => state.size);
+   const fiberState = React.useContext(context$1);
+-  const root = React.useMemo(() => ReactDOM.createRoot(state.fixed), [state.fixed]);
++  const root = React.useMemo(() => {
++  try {
++    // If a root was previously created on this element, reuse it.
++    if (state.fixed && state.fixed.__r3_root) return state.fixed.__r3_root;
++    const r = ReactDOM.createRoot(state.fixed);
++    try {
++      Object.defineProperty(state.fixed, '__r3_root', {
++        value: r,
++        configurable: true,
++        writable: false,
++      });
++    } catch (e) {
++      // ignore if we can't define property (very unlikely)
++      state.fixed.__r3_root = r;
++    }
++    return r;
++  } catch (e) {
++    // Fallback: if createRoot fails for any reason, rethrow so devs see it.
++    throw e;
++  }
++}, [state.fixed]);
+   useFrame(() => {
+     if (state.delta > state.eps) {
+       group.current.style.transform = `translate3d(${state.horizontal ? -width * (state.pages - 1) * state.offset : 0}px,${state.horizontal ? 0 : height * (state.pages - 1) * -state.offset}px,0)`;
