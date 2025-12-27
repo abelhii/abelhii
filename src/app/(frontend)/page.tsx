@@ -2,8 +2,9 @@ import { headers as getHeaders } from "next/headers.js";
 import { getPayload } from "payload";
 import { fileURLToPath } from "url";
 
-import { Hero } from "@/components/Hero";
+import { MainScene } from "@/components/MainScene";
 import config from "@/payload.config";
+import { Footer } from "@/components/Footer";
 
 export default async function HomePage() {
   const headers = await getHeaders();
@@ -15,7 +16,8 @@ export default async function HomePage() {
 
   return (
     <div className="flex flex-col items-center justify-center min-h-screen min-w-screen">
-      <Hero />
+      <MainScene />
+      <Footer />
     </div>
   );
 }

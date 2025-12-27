@@ -27,6 +27,7 @@
     "drizzle-orm": "^0.45.1",
     "graphql": "^16.8.1",
     "install": "^0.13.0",
+    "leva": "^0.10.1",
     "lucide-react": "^0.561.0",
     "next": "16.1.1",
     "payload": "^3.68.5",
