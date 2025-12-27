@@ -1,7 +1,9 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 
 import {
   Environment,
+  OrbitControls,
   Scroll,
   ScrollControls,
   Stars,
@@ -11,27 +13,33 @@ import {
 import { Canvas, useFrame, useThree } from "@react-three/fiber";
 import { Leva, useControls } from "leva";
 import Image from "next/image";
-import { ReactNode, useRef } from "react";
+import { ReactNode, useEffect, useRef, useState } from "react";
 import { ErrorBoundary } from "react-error-boundary";
 import { Group, MathUtils, Object3DEventMap, Points, Vector3 } from "three";
 
 import { cn } from "@/lib/shadcn.utils";
 import { useLerpedMouse } from "./hooks/use-lerped-mouse";
+import { useSmoothReset } from "./hooks/use-smooth-reset";
 import { AbelHead } from "./models/AbelHead";
-import { usePathname } from "next/navigation";
 
 type MainSceneProps = { children?: ReactNode; className?: string };
 
-function AbelFollowMouse() {
-  const ref = useRef<Group<Object3DEventMap> | null>(null);
+function AbelHeadWithControls() {
+  const headModel = useRef<Group<Object3DEventMap> | null>(null);
+  const headWorld = useRef(new Vector3());
+  const projected = useRef(new Vector3());
+  const orbitControls = useRef<any | null>(null);
+  const [disableControls, setDisableControls] = useState(false);
+
   const mouse = useLerpedMouse();
   const scroll = useScroll();
 
   // Live tweakable options via Leva (under "Abel Head")
-  const { rotationFactor, lerpAlpha, uiFixedScale } = useControls("Abel Head", {
+  const { rotationFactor, lerpAlpha, uiFixedScale, resetDuration } = useControls("Abel Head", {
     rotationFactor: { value: 5, min: 1, max: 10, step: 1 },
     lerpAlpha: { value: 0.1, min: 0, max: 1, step: 0.01 },
-    uiFixedScale: { value: 0.6, min: 0.1, max: 2, step: 0.01 },
+    uiFixedScale: { value: 1, min: 0.1, max: 2, step: 0.01 },
+    resetDuration: { value: 1.75, min: 0.05, max: 3, step: 0.01 }, // <= added
   });
 
   const { width, height, camera } = useThree((state) => ({
@@ -39,14 +47,24 @@ function AbelFollowMouse() {
     height: state.viewport.height,
     camera: state.camera,
   }));
+  const scrollThreshold = 0.5 / 3; // 1/3 for 3 pages
 
-  const headWorld = useRef(new Vector3());
-  const projected = useRef(new Vector3());
+  const startReset = useSmoothReset(camera, orbitControls, resetDuration);
 
   useFrame(() => {
-    if (ref.current === null) return;
+    if (scroll === null || orbitControls === null) return;
+    const isScrolling = scroll.offset > scrollThreshold;
+    if (isScrolling !== disableControls) {
+      setDisableControls(isScrolling);
+      startReset();
+    }
+  });
+
+  // Look at mouse movement and respond to scroll position
+  useFrame(() => {
+    if (headModel.current === null) return;
     if (!scroll) throw new Error("add <ScrollControls> above AbelFollowMouse");
-    const head = ref.current;
+    const head = headModel.current;
     const { offset } = scroll;
 
     // compute head position in NDC (normalized device coords) and compare to mouse
@@ -63,7 +81,6 @@ function AbelFollowMouse() {
     head.rotation.x = MathUtils.lerp(head.rotation.x, dy * -rf, lerpAlpha);
 
     // move to bottom right of screen as we scroll down
-    const scrollThreshold = 0.5 / 3; // 1/3 for 3 pages
     // compute parameter t in [0,1] relative to the threshold
     const localT = MathUtils.clamp(offset / scrollThreshold, 0, 1);
     const offsetX = ((localT / 2) * width) / 1.4;
@@ -71,10 +88,9 @@ function AbelFollowMouse() {
     head.position.x = MathUtils.lerp(head.position.x, offsetX, lerpAlpha);
     head.position.y = MathUtils.lerp(head.position.y, offsetY, lerpAlpha);
 
-    // scale down the head as we scroll past first page
     if (offset > scrollThreshold) {
       // scale down as we scroll past first page
-      const targetScale = uiFixedScale / 2;
+      const targetScale = uiFixedScale / 3;
       head.scale.lerp(
         new Vector3(targetScale, targetScale, targetScale),
         lerpAlpha
@@ -99,7 +115,13 @@ function AbelFollowMouse() {
         />
       }
     >
-      <AbelHead ref={ref} />
+      <AbelHead ref={headModel} />
+      <OrbitControls
+        ref={orbitControls}
+        enabled={!disableControls}
+        enableZoom={false}
+        enablePan={false}
+      />
     </ErrorBoundary>
   );
 }
@@ -150,9 +172,9 @@ function ScrollContent() {
       </Scroll>
       <Scroll html>
         <div className="text-white">
-          <h1>first page</h1>
-          <h1 className="mt-[100vh]">second page</h1>
-          <h1 className="mt-[100vh]">third page</h1>
+          <h1>1</h1>
+          <h1 className="mt-[100vh]">2</h1>
+          <h1 className="mt-[100vh]">3</h1>
         </div>
       </Scroll>
     </group>
@@ -160,8 +182,14 @@ function ScrollContent() {
 }
 
 export function MainScene({ children, className }: MainSceneProps) {
-  const pathname = usePathname();
-  const isDebugging = pathname.includes("#debug");
+  const [isDebugging, setIsDebugging] = useState(false);
+
+  useEffect(() => {
+    const update = () => setIsDebugging(window.location.hash === "#debug");
+    update();
+    window.addEventListener("hashchange", update);
+    return () => window.removeEventListener("hashchange", update);
+  }, []);
 
   return (
     <div
@@ -170,12 +198,12 @@ export function MainScene({ children, className }: MainSceneProps) {
         className
       )}
     >
-      {isDebugging && <Leva />}
+      <Leva hidden={!isDebugging} />
       <Canvas dpr={[1, 2]} camera={{ fov: 50, position: [0, 0, 4] }}>
         <Background />
         <Environment preset="sunset" />
         <ScrollControls pages={3} damping={0.1}>
-          <AbelFollowMouse />
+          <AbelHeadWithControls />
           <ScrollContent />
         </ScrollControls>
       </Canvas>
