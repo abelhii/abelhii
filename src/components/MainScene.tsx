@@ -19,12 +19,12 @@ import { ErrorBoundary } from "react-error-boundary";
 import { Group, MathUtils, Object3DEventMap, Points, Vector3 } from "three";
 
 import { useIsDebugging } from "@/hooks/use-is-debugging";
-import { cn } from "@/lib/shadcn.util";
+import { cn } from "@/lib/shadcn.utils";
 import { useLerpedMouse } from "../hooks/use-lerped-mouse";
 import { useSmoothReset } from "../hooks/use-smooth-reset";
 import { AbelHead } from "./models/AbelHead";
 import { Project } from "./Project";
-import { isMobile } from "@/lib/isMobile.util";
+import { isMobile } from "@/lib/is-mobile.utils";
 
 type MainSceneProps = { children?: ReactNode; className?: string };
 
