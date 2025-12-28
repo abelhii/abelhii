@@ -2,25 +2,29 @@
 "use client";
 
 import {
+  Center,
   Environment,
   OrbitControls,
   Scroll,
   ScrollControls,
   Stars,
-  Text,
+  Text3D,
   useScroll,
 } from "@react-three/drei";
 import { Canvas, useFrame, useThree } from "@react-three/fiber";
 import { Leva, useControls } from "leva";
 import Image from "next/image";
-import { ReactNode, useEffect, useRef, useState } from "react";
+import { ReactNode, useRef, useState } from "react";
 import { ErrorBoundary } from "react-error-boundary";
 import { Group, MathUtils, Object3DEventMap, Points, Vector3 } from "three";
 
-import { cn } from "@/lib/shadcn.utils";
-import { useLerpedMouse } from "./hooks/use-lerped-mouse";
-import { useSmoothReset } from "./hooks/use-smooth-reset";
+import { useIsDebugging } from "@/hooks/use-is-debugging";
+import { cn } from "@/lib/shadcn.util";
+import { useLerpedMouse } from "../hooks/use-lerped-mouse";
+import { useSmoothReset } from "../hooks/use-smooth-reset";
 import { AbelHead } from "./models/AbelHead";
+import { Project } from "./Project";
+import { isMobile } from "@/lib/isMobile.util";
 
 type MainSceneProps = { children?: ReactNode; className?: string };
 
@@ -35,12 +39,13 @@ function AbelHeadWithControls() {
   const scroll = useScroll();
 
   // Live tweakable options via Leva (under "Abel Head")
-  const { rotationFactor, lerpAlpha, uiFixedScale, resetDuration } = useControls("Abel Head", {
-    rotationFactor: { value: 5, min: 1, max: 10, step: 1 },
-    lerpAlpha: { value: 0.1, min: 0, max: 1, step: 0.01 },
-    uiFixedScale: { value: 1, min: 0.1, max: 2, step: 0.01 },
-    resetDuration: { value: 1.75, min: 0.05, max: 3, step: 0.01 }, // <= added
-  });
+  const { rotationFactor, lerpAlpha, uiFixedScale, resetDuration } =
+    useControls("Abel Head", {
+      rotationFactor: { value: 5, min: 1, max: 10, step: 1 },
+      lerpAlpha: { value: 0.1, min: 0, max: 1, step: 0.01 },
+      uiFixedScale: { value: 0.8, min: 0.1, max: 2, step: 0.01 },
+      resetDuration: { value: 1.75, min: 0.05, max: 3, step: 0.01 }, // <= added
+    });
 
   const { width, height, camera } = useThree((state) => ({
     width: state.viewport.width,
@@ -118,7 +123,7 @@ function AbelHeadWithControls() {
       <AbelHead ref={headModel} />
       <OrbitControls
         ref={orbitControls}
-        enabled={!disableControls}
+        enabled={!disableControls && !isMobile()}
         enableZoom={false}
         enablePan={false}
       />
@@ -151,24 +156,18 @@ function ScrollContent() {
   return (
     <group>
       <Scroll>
-        <Text
-          position={[0, 2.5, -5]}
-          fontSize={1}
-          color="white"
-          material-fog={false}
-          letterSpacing={0}
-        >
-          Welcome
-        </Text>
-        <Text
-          position={[0, -6, 0]}
-          fontSize={0.5}
-          color="white"
-          material-fog={false}
-          letterSpacing={0}
-        >
-          Scroll down to explore more
-        </Text>
+        <Center top position={[0, 1, -1]}>
+          <Text3D
+            material-fog={false}
+            letterSpacing={0}
+            size={0.5}
+            font="/Inter_Bold.json"
+          >
+            Salutations
+            <meshStandardMaterial color="white" />
+          </Text3D>
+        </Center>
+        <Project position={[2, -7, 0]} />
       </Scroll>
       <Scroll html>
         <div className="text-white">
@@ -182,14 +181,7 @@ function ScrollContent() {
 }
 
 export function MainScene({ children, className }: MainSceneProps) {
-  const [isDebugging, setIsDebugging] = useState(false);
-
-  useEffect(() => {
-    const update = () => setIsDebugging(window.location.hash === "#debug");
-    update();
-    window.addEventListener("hashchange", update);
-    return () => window.removeEventListener("hashchange", update);
-  }, []);
+  const { isDebugging } = useIsDebugging();
 
   return (
     <div
