@@ -1,8 +1,8 @@
 ---
 layout: base.njk
-faviconURL: ../../assets/favicon/favicon.ico
-styleURL: ../../style.css
-extraStyle: ../../styles/post.css
+faviconURL: assets/favicon/favicon.ico
+styleURL: style.css
+extraStyle: styles/post.css
 
 pagination:
   data: collections
@@ -12,7 +12,7 @@ permalink: /tags/{{ tag }}/
 ---
 
 <div class="post">
-    <a href="../../" style="margin-bottom: 1rem;">🏡 home</a>
+    <a href={{ "/" | url }} style="margin-bottom: 1rem;">🏡 home</a>
     <div class="title">
         All posts tagged “<span style="color: var(--third-color);">{{ tag }}</span>”
     </div>
@@ -32,7 +32,7 @@ permalink: /tags/{{ tag }}/
                 <div class="tags">
                     <i class="fas fa-tags"></i>
                     {% for tag in project.data.tags %}
-                        <a class="tag" href="{{'/tags/' + tag | url}}">{{ tag }}</a>
+                        <a class="tag" href="{{ '/tags/' + tag | url }}">{{ tag }}</a>
                     {% endfor %}
                 </div>
                 <a class="read-more" href="{{ project.url | url }}" aria-label="Read more on {{ project.data.title }}">Read more</a>

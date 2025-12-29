@@ -2,7 +2,7 @@
 layout: project.njk
 projectTitle: Where should I Chow?
 tags: ["ionic", "angular", "responsive", "project"]
-headerImg: ../../assets/images/chow.png
+headerImg: assets/images/chow.png
 ---
 
 <!-- excerpt start -->

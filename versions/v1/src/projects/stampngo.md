@@ -2,7 +2,7 @@
 layout: project.njk
 projectTitle: Stamp & Go to flatten the curve
 tags: ["ionic", "angular", "responsive", "project"]
-headerImg: ../../assets/images/stampngo.png
+headerImg: assets/images/stampngo.png
 ---
 
 <!-- excerpt start -->

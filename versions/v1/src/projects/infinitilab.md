@@ -2,7 +2,7 @@
 layout: project.njk
 projectTitle: infinitilab.com
 tags: ["angular", "javascript", "dotnet-core", "responsive", "project"]
-headerImg: ../../assets/images/infinitilab.png
+headerImg: assets/images/infinitilab.png
 ---
 
 <!-- excerpt start -->

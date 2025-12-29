@@ -2,13 +2,15 @@
   "name": "abelhii",
   "version": "0.1.0",
   "private": true,
+  "type": "module",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
     "preview": "next start",
-    "postinstall": "patch-package"
+    "postinstall": "patch-package",
+    "generate:types": "PAYLOAD_CONFIG_PATH=src/payload.config.ts payload generate:types"
   },
   "dependencies": {
     "@payloadcms/db-postgres": "^3.68.5",

@@ -2,7 +2,7 @@
 layout: project.njk
 projectTitle: brokerfish.com
 tags: ["angular", "javascript", "dotnet-core", "responsive", "project"]
-headerImg: ../../assets/images/brokerfish.png
+headerImg: assets/images/brokerfish.png
 ---
 
 <!-- excerpt start -->

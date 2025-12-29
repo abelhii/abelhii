@@ -2,7 +2,7 @@
 layout: project.njk
 projectTitle: koko - design portfolio
 tags: ["typescript", "vue", "responsive", "project"]
-headerImg: ../../assets/images/koko.png
+headerImg: assets/images/koko.png
 ---
 
 <!-- excerpt start -->
