@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <base href="/versions/v1/">
+        <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1"/>
+        <title>abelhii</title>
+        <link rel="shortcut icon" href="assets/favicon/favicon.ico" type="image/x-icon">
+        <link rel="icon" href="assets/favicon/favicon.ico" type="image/x-icon">
+
+        <link href="https://fonts.googleapis.com/css?family=Muli|Playfair+Display|Quicksand|Comfortaa&display=swap" rel="stylesheet">
+
+        <link rel="stylesheet" href="style.css">
+
+        
+            <link rel="stylesheet" href="styles/post.css">
+        
+    </head>
+
+    <body>
+
+        
+<div class="post">
+    <a href=/versions/v1/ style="margin-bottom: 1rem;">🏡 home</a>
+    <div class="title">
+        brokerfish.com
+    </div>
+
+    <div class="tags">
+        <i class="fas fa-tags"></i>
+        
+            <a class="tag" href="/tags/angular">angular</a>
+        
+            <a class="tag" href="/tags/javascript">javascript</a>
+        
+            <a class="tag" href="/tags/dotnet-core">dotnet-core</a>
+        
+            <a class="tag" href="/tags/responsive">responsive</a>
+        
+            <a class="tag" href="/tags/project">project</a>
+        
+    </div>
+
+    
+        <div class="headerImg">
+            <img src="assets/images/brokerfish.png">
+        </div>
+    
+
+    <div>
+        <!-- excerpt start -->
+<p><a href="https://brokerfish.com">Brokerfish</a> is an end-to-end health insurance comparison website, that presents international insurance information in an easy to digest manner.
+The project encompasses a front facing comparison website which includes a CMS along with a dynamic application form for each insurer.</p>
+<!-- excerpt end -->
+<h2>The problem</h2>
+<p>Brokerfish was in need of a revamp which required a complete overhaul of the <strong>database</strong>, <strong>comparison logic</strong> and a <strong>maintainable solution</strong> for updating and introducing new insurance products.</p>
+<h2>The solution</h2>
+<h4>Database</h4>
+<p>The first step was to restructure and optimise the database to fit our needs.
+We generated a DB diagram using <a href="https://www.heidisql.com/">HeidiSQL</a> which gave us a good visual overview of what we were working with.
+Then we went through each table and their relationships, removed the redeundancies and rearranged the tables.</p>
+<h4>Comparison Logic</h4>
+<p>After sorting out the database, we wrote the comparison logic by connecting it to Entity Framework in order to be able to work with LINQ.
+This made it a lot easier for us to work with the data and create the APIs that we needed.</p>
+<p>After getting the backend sorted, I started work on the frontend to bring it up to a more modern design standard by following responsive principles and optimising it for mobile use.</p>
+<p><img src="../../assets/images/brokerfish-compare.png" alt="Comparison">
+<img src="../../assets/images/brokerfish-compare-2.png" alt="Comparison"></p>
+<h4>CMS (Content Management Systems)</h4>
+<p>Due to the nature of insurance being quite complex, it meant that updating and inserting data into the database was equally so.
+One of the pain points of the old system was that updating insurance products and prices required quite a lot of manual labor.</p>
+<p>To help with this we created a CMS that allowed users to bulk import and export multiple product data into excel sheets. We also created macros for those excel sheets to help with updating the prices.</p>
+<p>This provided the client with more ownership of their system while greatly reducing the time it takes to update or add new products.</p>
+<h2>The outcome</h2>
+<p>The outcome was a sleek, easily maintainable system that provides clarity in a complicated industry.</p>
+<h4>What I learned from this project:</h4>
+<p>My takeaway from working on this is the importance of planning before development.
+This is where I really got to experience updating legacy software and making sure that whoever looks at my code won't curse me in the future.</p>
+<p>Technologies I learned:</p>
+<ul>
+<li>C#</li>
+<li>Entity Framework LINQ</li>
+<li>Razor Pages</li>
+<li>CSS Responsiveness</li>
+</ul>
+
+    </div>
+</div>
+
+
+
+<div class="footer">
+    
+        <a class="prevProj" href="/versions/v1/projects/abelhii/" onclick="firebase.analytics().logEvent('prev_project', { post: 'abelhii.com' });">
+            <i class="fas fa-long-arrow-alt-left"></i>
+            prev project
+        </a>
+    
+
+    <h2>💻 more stuff! 💻</h2>
+
+    
+        <a class="nextProj" href="/versions/v1/projects/chow/ " onclick="firebase.analytics().logEvent('next_project', { post: 'Where should I Chow?' });">next project
+            <i class="fas fa-long-arrow-alt-right"></i>
+        </a>
+    
+</div>
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/js/all.min.js"></script>
+        <!-- Greensock -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.4.2/gsap.min.js"></script>
+    </body>
+</html>
