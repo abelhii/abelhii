@@ -1,36 +1,34 @@
-import { lexicalEditor } from "@payloadcms/richtext-lexical";
 import { CollectionConfig } from "payload";
 
 export const Projects: CollectionConfig = {
-  slug: 'projects',
+  slug: "projects",
   admin: {
-    useAsTitle: 'name',
+    useAsTitle: "title",
   },
   fields: [
     {
-      name: 'name',
-      type: 'text',
+      name: "title",
+      type: "text",
       required: true,
     },
     {
-      name: 'description',
-      type: 'textarea',
+      name: "description",
+      type: "textarea",
     },
     {
-      name: 'tags',
-      type: 'array',
+      name: "tags",
+      type: "array",
       unique: true,
       fields: [
         {
-          name: 'tag',
-          type: 'text',
-        }
-      ]
+          name: "tag",
+          type: "text",
+        },
+      ],
     },
     {
-      name: 'content',
-      type: 'richText',
-      editor: lexicalEditor({}),
-    }
+      name: "content",
+      type: "richText",
+    },
   ],
-}
+};
