@@ -2,15 +2,16 @@
 import { OrbitControls, Text, useScroll } from "@react-three/drei";
 import { useFrame, useThree } from "@react-three/fiber";
 import { useControls } from "leva";
-import { useEffect, useRef, useState } from "react";
+import { Suspense, useEffect, useRef, useState } from "react";
 import { ErrorBoundary } from "react-error-boundary";
 import { Group, MathUtils, Object3DEventMap, Vector3 } from "three";
 
-import { useGlobal } from "@/context/global.context";
 import { useLerpedMouse } from "@/hooks/use-lerped-mouse";
 import { useSmoothReset } from "@/hooks/use-smooth-reset";
 import { isMobile } from "@/lib/is-mobile.utils";
+import { useGlobalStore } from "@/stores/use-global.store";
 import { AbelAvatar3D } from "./AbelAvatar3D";
+import { Loader } from "../Loader";
 
 export function Abel3DControlled() {
   const headModel = useRef<Group<Object3DEventMap> | null>(null);
@@ -18,7 +19,7 @@ export function Abel3DControlled() {
   const projected = useRef(new Vector3());
   const orbitControls = useRef<any | null>(null);
   const [disableControls, setDisableControls] = useState(false);
-  const { resetId } = useGlobal();
+  const resetId = useGlobalStore((state) => state.resetId);
 
   const mouse = useLerpedMouse();
   const scroll = useScroll();
@@ -28,7 +29,7 @@ export function Abel3DControlled() {
     useControls("Abel Head", {
       rotationFactor: { value: 5, min: 1, max: 10, step: 1 },
       lerpAlpha: { value: 0.1, min: 0, max: 1, step: 0.01 },
-      uiFixedScale: { value: 0.8, min: 0.1, max: 2, step: 0.01 },
+      uiFixedScale: { value: 0.9, min: 0.1, max: 2, step: 0.01 },
       resetDuration: { value: 1.2, min: 0.05, max: 3, step: 0.01 }, // <= added
     });
 
@@ -102,7 +103,9 @@ export function Abel3DControlled() {
 
   return (
     <ErrorBoundary fallback={<Text>Failed to load 3D model</Text>}>
-      <AbelAvatar3D ref={headModel} />
+      <Suspense fallback={<Loader />}>
+        <AbelAvatar3D ref={headModel} />
+      </Suspense>
       <OrbitControls
         ref={orbitControls}
         enabled={!disableControls && !isMobile()}

@@ -10,7 +10,6 @@ type AbelAvatar3DProps = ComponentPropsWithRef<"group">;
 
 const ABEL_HEAD_URL =
   "https://fjvfwbnbufwhevhivldg.supabase.co/storage/v1/object/public/abelhii/abel-bust.glb";
-useGLTF.preload(ABEL_HEAD_URL);
 
 export function AbelAvatar3D({ ...groupProps }: AbelAvatar3DProps) {
   const { nodes, materials } = useGLTF(ABEL_HEAD_URL) as any;

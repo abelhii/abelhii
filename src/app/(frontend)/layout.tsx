@@ -1,7 +1,6 @@
 import { Analytics } from "@vercel/analytics/next";
 import React from "react";
 
-import { GlobalProvider } from "@/context/global.context";
 import "../globals.css";
 
 export const metadata = {
@@ -18,9 +17,7 @@ export default async function RootLayout(props: { children: React.ReactNode }) {
         <Analytics />
       </head>
       <body>
-        <main>
-          <GlobalProvider>{children}</GlobalProvider>
-        </main>
+        <main>{children}</main>
       </body>
     </html>
   );

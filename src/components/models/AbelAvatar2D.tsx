@@ -112,7 +112,7 @@ export default function AbelAvatar2D({
       id="abelavatar"
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 790.38 804.17"
-      className={cn("h-125 w-125", className)}
+      className={cn("h-96 w-96 md:h-125 md:w-125", className)}
       onClick={onClick}
     >
       <title>Abel Hii</title>
