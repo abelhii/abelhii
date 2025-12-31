@@ -42,9 +42,14 @@ export function Abel3DControlled() {
 
   const startReset = useSmoothReset(camera, orbitControls, resetDuration);
 
-  // Disable controls and reset
+  // reset orbitControls when resetId updates
+  useEffect(() => {
+    startReset();
+  }, [resetId, startReset]);
+
+  // Disable controls and reset when scrolled past threshold
   useFrame(() => {
-    if (scroll === null || orbitControls === null) return;
+    if (!scroll || !orbitControls) return;
     const isScrolling = scroll.offset > scrollThreshold;
     if (isScrolling !== disableControls) {
       setDisableControls(isScrolling);
@@ -52,17 +57,10 @@ export function Abel3DControlled() {
     }
   });
 
-  // reset orbitControls when resetId updates
-  useEffect(() => {
-    startReset();
-  }, [resetId, startReset]);
-
   // Look at mouse movement and respond to scroll position
   useFrame(() => {
     if (headModel.current === null) return;
-    if (!scroll) throw new Error("add <ScrollControls> above AbelFollowMouse");
     const head = headModel.current;
-    const { offset } = scroll;
 
     // compute head position in NDC (normalized device coords) and compare to mouse
     head.getWorldPosition(headWorld.current);
@@ -76,8 +74,15 @@ export function Abel3DControlled() {
     const rf = Math.PI / rotationFactor;
     head.rotation.y = MathUtils.lerp(head.rotation.y, dx * rf, lerpAlpha);
     head.rotation.x = MathUtils.lerp(head.rotation.x, dy * -rf, lerpAlpha);
+  });
 
-    // move to bottom right of screen as we scroll down
+  // move to bottom right of screen as we scroll down
+  useFrame(() => {
+    if (headModel.current === null) return;
+    if (!scroll) throw new Error("add <ScrollControls> above component");
+    const head = headModel.current;
+    const { offset } = scroll;
+
     // compute parameter t in [0,1] relative to the threshold
     const localT = MathUtils.clamp(offset / scrollThreshold, 0, 1);
     const offsetX = ((localT / 2) * width) / 1.4;
@@ -106,12 +111,14 @@ export function Abel3DControlled() {
       <Suspense fallback={<Loader />}>
         <AbelAvatar3D ref={headModel} />
       </Suspense>
-      <OrbitControls
-        ref={orbitControls}
-        enabled={!disableControls && !isMobile()}
-        enableZoom={false}
-        enablePan={false}
-      />
+      {!isMobile() && (
+        <OrbitControls
+          ref={orbitControls}
+          enabled={!disableControls}
+          enableZoom={false}
+          enablePan={false}
+        />
+      )}
     </ErrorBoundary>
   );
 }
