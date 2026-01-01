@@ -1,15 +1,17 @@
-import { ScrollControls, Scroll, Center, Text3D } from "@react-three/drei";
+import { Center, Scroll, ScrollControls, Text3D } from "@react-three/drei";
+import { useThree } from "@react-three/fiber";
+import { MathUtils } from "three";
+
+import { useGlobalStore } from "@/stores/use-global.store";
 import { Abel3DControlled } from "./models/Abel3DControlled";
 import AbelAvatar2D from "./models/AbelAvatar2D";
 import { Toggle3D } from "./Toggle3D";
-import { useGlobalStore } from "@/stores/use-global.store";
-import { useThree } from "@react-three/fiber";
 
 export function Header() {
   const viewport = useThree((state) => state.viewport);
   const is3dOn = useGlobalStore((state) => state.is3dOn);
 
-  const scalingFactor = Math.min(Math.max(window.innerWidth / 1440, 0.5), 1.2);
+  const scalingFactor = MathUtils.clamp(window.innerWidth / 1440, 0.75, 1.2);
 
   return (
     <group scale={scalingFactor}>

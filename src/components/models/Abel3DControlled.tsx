@@ -10,8 +10,8 @@ import { useLerpedMouse } from "@/hooks/use-lerped-mouse";
 import { useSmoothReset } from "@/hooks/use-smooth-reset";
 import { isMobile } from "@/lib/is-mobile.utils";
 import { useGlobalStore } from "@/stores/use-global.store";
-import { AbelAvatar3D } from "./AbelAvatar3D";
 import { Loader } from "../Loader";
+import { AbelAvatar3D } from "./AbelAvatar3D";
 
 export function Abel3DControlled() {
   const headModel = useRef<Group<Object3DEventMap> | null>(null);
@@ -38,7 +38,7 @@ export function Abel3DControlled() {
     height: state.viewport.height,
     camera: state.camera,
   }));
-  const scrollThreshold = 0.5 / 3; // 1/3 for 3 pages
+  const scrollThreshold = 0.5 / 3; // half of the first page
 
   const startReset = useSmoothReset(camera, orbitControls, resetDuration);
 
@@ -59,7 +59,7 @@ export function Abel3DControlled() {
 
   // Look at mouse movement and respond to scroll position
   useFrame(() => {
-    if (headModel.current === null) return;
+    if (!headModel.current) return;
     const head = headModel.current;
 
     // compute head position in NDC (normalized device coords) and compare to mouse
@@ -78,19 +78,22 @@ export function Abel3DControlled() {
 
   // move to bottom right of screen as we scroll down
   useFrame(() => {
-    if (headModel.current === null) return;
-    if (!scroll) throw new Error("add <ScrollControls> above component");
+    if (!headModel.current || !scroll) return;
     const head = headModel.current;
     const { offset } = scroll;
 
     // compute parameter t in [0,1] relative to the threshold
     const localT = MathUtils.clamp(offset / scrollThreshold, 0, 1);
-    const offsetX = ((localT / 2) * width) / 1.4;
-    const offsetY = ((localT / 2) * -height) / 1.4;
+    const offsetX = (localT * width) / 1.6;
+    const offsetY = (localT * -height) / 1.6;
     head.position.x = MathUtils.lerp(head.position.x, offsetX, lerpAlpha);
     head.position.y = MathUtils.lerp(head.position.y, offsetY, lerpAlpha);
+    const ndc = new Vector3(0.75, -0.75, 0);
+    ndc.unproject(camera);
+    ndc.z = head.position.z;
 
-    if (offset > scrollThreshold) {
+    head.position.lerp(ndc, localT * lerpAlpha);
+    if (offset >= scrollThreshold) {
       // scale down as we scroll past first page
       const targetScale = uiFixedScale / 3;
       head.scale.lerp(
