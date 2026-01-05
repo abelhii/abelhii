@@ -17,8 +17,6 @@ export default async function ProjectsPage() {
   const payload = await getPayload({ config: payloadConfig });
   const projects = await getProjects(payload);
 
-  console.log("Projects:", projects);
-
   return (
     <div className="flex flex-col gap-4 p-8 bg-amber-800 text-white min-h-screen">
       Projects Page

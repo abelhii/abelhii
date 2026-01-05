@@ -6,6 +6,7 @@ import { Suspense, useEffect, useRef, useState } from "react";
 import { ErrorBoundary } from "react-error-boundary";
 import { Group, MathUtils, Object3DEventMap, Vector3 } from "three";
 
+import { useAnchorModel } from "@/hooks/use-anchor-model";
 import { useLerpedMouse } from "@/hooks/use-lerped-mouse";
 import { useSmoothReset } from "@/hooks/use-smooth-reset";
 import { isMobile } from "@/lib/is-mobile.utils";
@@ -29,15 +30,11 @@ export function Abel3DControlled() {
     useControls("Abel Head", {
       rotationFactor: { value: 5, min: 1, max: 10, step: 1 },
       lerpAlpha: { value: 0.1, min: 0, max: 1, step: 0.01 },
-      uiFixedScale: { value: 0.9, min: 0.1, max: 2, step: 0.01 },
-      resetDuration: { value: 1.2, min: 0.05, max: 3, step: 0.01 }, // <= added
+      resetDuration: { value: 1.2, min: 0.05, max: 3, step: 0.01 },
+      uiFixedScale: { value: 1, min: 0.2, max: 2, step: 0.1 },
     });
 
-  const { width, height, camera } = useThree((state) => ({
-    width: state.viewport.width,
-    height: state.viewport.height,
-    camera: state.camera,
-  }));
+  const { camera } = useThree((state) => ({ camera: state.camera }));
   const scrollThreshold = 0.5 / 3; // half of the first page
 
   const startReset = useSmoothReset(camera, orbitControls, resetDuration);
@@ -76,37 +73,11 @@ export function Abel3DControlled() {
     head.rotation.x = MathUtils.lerp(head.rotation.x, dy * -rf, lerpAlpha);
   });
 
-  // move to bottom right of screen as we scroll down
-  useFrame(() => {
-    if (!headModel.current || !scroll) return;
-    const head = headModel.current;
-    const { offset } = scroll;
-
-    // compute parameter t in [0,1] relative to the threshold
-    const localT = MathUtils.clamp(offset / scrollThreshold, 0, 1);
-    const offsetX = (localT * width) / 1.6;
-    const offsetY = (localT * -height) / 1.6;
-    head.position.x = MathUtils.lerp(head.position.x, offsetX, lerpAlpha);
-    head.position.y = MathUtils.lerp(head.position.y, offsetY, lerpAlpha);
-    const ndc = new Vector3(0.75, -0.75, 0);
-    ndc.unproject(camera);
-    ndc.z = head.position.z;
-
-    head.position.lerp(ndc, localT * lerpAlpha);
-    if (offset >= scrollThreshold) {
-      // scale down as we scroll past first page
-      const targetScale = uiFixedScale / 3;
-      head.scale.lerp(
-        new Vector3(targetScale, targetScale, targetScale),
-        lerpAlpha
-      );
-    } else {
-      // scale back to normal when on first page
-      head.scale.lerp(
-        new Vector3(uiFixedScale, uiFixedScale, uiFixedScale),
-        lerpAlpha
-      );
-    }
+  useAnchorModel({
+    model: headModel,
+    lerpAlpha,
+    scrollThreshold,
+    uiFixedScale,
   });
 
   return (
