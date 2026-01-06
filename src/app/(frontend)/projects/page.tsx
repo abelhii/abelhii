@@ -1,8 +1,7 @@
-import { getPayload, Payload } from "payload";
 import { RichText } from "@payloadcms/richtext-lexical/react";
+import { getPayload, Payload } from "payload";
 
 import payloadConfig from "@/payload.config";
-import { RichTextField } from "@payloadcms/ui";
 
 const getProjects = async (payload: Payload) => {
   const projects = await payload.find({

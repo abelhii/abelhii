@@ -17,7 +17,6 @@ export function Toggle3D({ className }: Toggle3DProps) {
   );
 
   const primaryColor = "bg-blue-500";
-  const offShadow = "[box-shadow:0_0px_0_0_#1b6ff8,0_0px_0_0_#1b70f841]";
 
   return (
     <Toggle
@@ -28,8 +27,8 @@ export function Toggle3D({ className }: Toggle3DProps) {
       }}
       className={cn(
         `button w-10 h-10 ${primaryColor} rounded-full cursor-pointer select-none hover:${primaryColor}
-    active:translate-y-2 active:${offShadow} active:border-b-0
-    data-[state=off]:translate-y-2 data-[state=off]:${offShadow} data-[state=off]:border-b-0
+    active:translate-y-2  active:[box-shadow:0_0px_0_0_#1b6ff8,0_0px_0_0_#1b70f841] active:border-b-0
+    data-[state=off]:translate-y-2  data-[state=off]:[box-shadow:0_0px_0_0_#1b6ff8,0_0px_0_0_#1b70f841] data-[state=off]:border-b-0
     data-[state=on]:${primaryColor}
     [box-shadow:0_8px_0_0_#1b6ff8,0_13px_0_0_#1b70f841] border border-blue-400
     transition-all duration-150

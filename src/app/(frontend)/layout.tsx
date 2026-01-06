@@ -3,6 +3,7 @@ import React from "react";
 
 import { Nav, NavItem } from "@/components/Nav";
 import "../globals.css";
+import Providers from "./providers";
 
 export const metadata = {
   description: "A Portfolio website using Payload in a Next.js app.",
@@ -18,13 +19,15 @@ export default async function RootLayout(props: { children: React.ReactNode }) {
         <Analytics />
       </head>
       <body>
-        <main>
-          <Nav className="absolute mx-auto m-8">
-            <NavItem href="/">Home</NavItem>
-            <NavItem href="/projects">Projects</NavItem>
-          </Nav>
-          {children}
-        </main>
+        <Providers>
+          <main>
+            <Nav className="absolute mx-auto m-8">
+              <NavItem href="/">Home</NavItem>
+              <NavItem href="/projects">Projects</NavItem>
+            </Nav>
+            {children}
+          </main>
+        </Providers>
       </body>
     </html>
   );
