@@ -5,6 +5,7 @@ import gsap from "gsap";
 import { useRef } from "react";
 
 import { cn } from "@/lib/shadcn.utils";
+import { useAnimate } from "@/hooks/use-animate";
 
 type AbelAvatar2DProps = {
   className?: string;
@@ -18,11 +19,7 @@ export default function AbelAvatar2D({
   const scope = useRef<SVGSVGElement | null>(null);
 
   // mutable refs for cursor tracking
-  const mouse = useRef<{ x: number; y: number }>({ x: 0, y: 0 });
-  const screen = useRef<{ width: number; height: number }>({
-    width: 0,
-    height: 0,
-  });
+  const { mouse, screen } = useAnimate();
 
   // timelines
   const blinkTl = useRef<gsap.core.Timeline | null>(null);
@@ -35,9 +32,6 @@ export default function AbelAvatar2D({
         "(prefers-reduced-motion: no-preference)"
       ).matches;
       if (!safeToAnimate) return;
-
-      screen.current.width = window.innerWidth;
-      screen.current.height = window.innerHeight;
 
       blinkTl.current = gsap.timeline({
         repeat: -1,
@@ -80,26 +74,12 @@ export default function AbelAvatar2D({
         });
       };
 
-      const onMove = (e: MouseEvent) => {
-        mouse.current.x = e.clientX;
-        mouse.current.y = e.clientY;
-      };
-
-      const onResize = () => {
-        screen.current.width = window.innerWidth;
-        screen.current.height = window.innerHeight;
-      };
-
-      window.addEventListener("mousemove", onMove);
-      window.addEventListener("resize", onResize);
       gsap.ticker.add(animateFace);
 
       return () => {
         blinkTl.current?.kill();
         blinkTl.current = null;
 
-        window.removeEventListener("mousemove", onMove);
-        window.removeEventListener("resize", onResize);
         gsap.ticker.remove(animateFace);
       };
     },

@@ -1,15 +1,22 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import * as React from "react";
+import { useEffect, useRef } from "react";
 
 import { cn } from "@/lib/shadcn.utils";
 import { cva, type VariantProps } from "class-variance-authority";
+import "./card.css";
 
 const cardVariants = cva(
-  "group text-card-foreground flex flex-col gap-6 rounded-xl border py-6",
+  "card group relative text-card-foreground flex flex-col gap-6 rounded-xl border py-6",
   {
     variants: {
       variant: {
         default: "bg-card shadow-sm",
-        space: "text-white backdrop-blur-xs bg-gray-800/70 border border-gray-700",
+        space:
+          "text-white backdrop-blur-xs bg-gray-800/70 border-none",
+      },
+      effect: {
+        glow: ''
       },
       defaultVariants: {
         variant: "default",
@@ -21,13 +28,38 @@ const cardVariants = cva(
 function Card({
   className,
   variant = "default",
+  effect,
   ...props
 }: React.ComponentProps<"div"> & VariantProps<typeof cardVariants>) {
+  const card = useRef<HTMLDivElement | null>(null);
+
+  useEffect(() => {
+    if (effect !== "glow") return;
+    if (!window || !card.current) return;
+    const target = card.current;
+
+    const mouseMove = (e: MouseEvent) => {
+      const rect = target.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+
+      target.style.setProperty("--mouse-x", `${x}px`);
+      target.style.setProperty("--mouse-y", `${y}px`);
+    };
+
+    target.addEventListener("mousemove", mouseMove);
+
+    return () => {
+      target.removeEventListener("mousemove", mouseMove);
+    };
+  }, [effect]);
+
   return (
     <div
       data-slot="card"
       data-variant={variant}
-      className={cn(cardVariants({ variant, className }))}
+      ref={card}
+      className={cn(cardVariants({ variant, effect, className }))}
       {...props}
     />
   );
@@ -60,7 +92,10 @@ function CardDescription({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
       data-slot="card-description"
-      className={cn("text-muted-foreground text-sm group-data-[variant=space]:text-white", className)}
+      className={cn(
+        "text-muted-foreground text-sm group-data-[variant=space]:text-white",
+        className
+      )}
       {...props}
     />
   );
@@ -106,5 +141,6 @@ export {
   CardDescription,
   CardFooter,
   CardHeader,
-  CardTitle,
+  CardTitle
 };
+

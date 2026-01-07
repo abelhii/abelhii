@@ -38,7 +38,11 @@ type ProjectCardProps = {
 
 export function ProjectCard({ title, image, description }: ProjectCardProps) {
   return (
-    <Card variant="space" className="w-xs sm:w-sm md:w-md">
+    <Card
+      variant="space"
+      effect="glow"
+      className="w-xs sm:w-sm md:w-md cursor-pointer"
+    >
       <CardContent className="grid gap-4">
         <CardTitle className="font-bold text-xl">{title}</CardTitle>
         <CardImage image={image} />

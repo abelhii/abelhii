@@ -5,6 +5,7 @@ import { ReactNode } from "react";
 
 import { cn } from "@/lib/shadcn.utils";
 import { Toggle3D } from "./Toggle3D";
+import { Card, CardContent } from "./ui/card";
 
 type NavItemProps = { children: ReactNode; className?: string } & LinkProps;
 
@@ -27,14 +28,13 @@ type NavProps = {
 
 export function Nav({ children, className }: NavProps) {
   return (
-    <nav
-      className={cn(
-        " top-0 z-10 flex justify-center items-center p-4 min-h-8 gap-4 text-white bg-gray-800/70 border border-gray-700 rounded-md",
-        className
-      )}
-    >
-      {children}
-      <Toggle3D className="-translate-y-2 active:translate-y-0 data-[state=off]:translate-y-0" />
+    <nav className={className}>
+      <Card variant="space" effect="glow">
+        <CardContent className="space-x-4 relative">
+          <Toggle3D className="mr-8 -translate-y-2 active:translate-y-0 data-[state=off]:translate-y-0" />
+          {children}
+        </CardContent>
+      </Card>
     </nav>
   );
 }
