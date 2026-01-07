@@ -14,11 +14,12 @@ export function ProjectCardList({ projects }: ProjectCardListProps) {
     <div className="flex gap-4 justify-center flex-wrap max-w-6xl p-8">
       {projects.docs.map((project) => {
         if (!project) return null;
-        const { title, description, headerImage } = project;
+        const { id, title, description, headerImage } = project;
         
         return (
           <ProjectCard
-            key={title}
+            key={id}
+            id={id}
             title={title}
             description={description}
             image={headerImage}

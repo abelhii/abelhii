@@ -13,7 +13,7 @@ const cardVariants = cva(
       variant: {
         default: "bg-card shadow-sm",
         space:
-          "text-white backdrop-blur-xs bg-gray-800/70 border-none",
+          "text-white backdrop-blur-xs bg-gray-800/70 border-transparent",
       },
       effect: {
         glow: ''
