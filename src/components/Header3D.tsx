@@ -8,7 +8,7 @@ import { Abel3DControlled } from "./models/Abel3DControlled";
 export function Header3D() {
   const { is3dOn } = useGlobalStore();
   const viewport = useThree((state) => state.viewport);
-  const scalingFactor = MathUtils.clamp(window.innerWidth / 1440, 0.65, 1.1);
+  const scalingFactor = MathUtils.clamp(window.innerWidth / 1440, 0.75, 1.2);
 
   return (
     <group scale={scalingFactor}>

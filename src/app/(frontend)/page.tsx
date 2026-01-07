@@ -9,12 +9,12 @@ import { ReactNode } from "react";
 import { Background } from "@/components/Background";
 import { Header2D } from "@/components/Header2D";
 import { Header3D } from "@/components/Header3D";
-import { Abel3DControlled } from "@/components/models/Abel3DControlled";
 import { ProjectCardList } from "@/components/project/ProjectCardList";
 import { getProjects } from "@/data/getProjects";
 import { useIsDebugging } from "@/hooks/use-is-debugging";
 import { cn } from "@/lib/shadcn.utils";
 import { useGlobalStore } from "@/stores/use-global.store";
+import AbelAvatar2D from "@/components/models/AbelAvatar2D";
 
 type SectionWrapperProps = {
   children: ReactNode;
@@ -49,6 +49,7 @@ export default function HomePage() {
     <div className="flex flex-col items-center justify-center bg-black text-white min-h-screen min-w-screen">
       <div className="absolute flex flex-col items-center justify-center w-screen h-screen bg-black">
         <Leva hidden={!isDebugging} />
+        {!is3dOn && <AbelAvatar2D className="fixed z-10" />}
         <Canvas dpr={[1, 2]} camera={{ fov: 50, position: [0, 0, 4] }}>
           <Background />
           <Environment preset="sunset" />

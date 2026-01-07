@@ -8,6 +8,7 @@ type UseAnchorModelProps = {
   lerpAlpha?: number;
   scrollThreshold?: number;
   uiFixedScale?: number; // size of model after scroll;
+  moveToBottomRight?: boolean;
 };
 
 /**
@@ -17,7 +18,8 @@ export function useAnchorModel({
   model,
   lerpAlpha = 0.1,
   scrollThreshold = 0.5 / 3,
-  uiFixedScale = 0.9,
+  uiFixedScale = 0.8,
+  moveToBottomRight = false,
 }: UseAnchorModelProps) {
   const scroll = useScroll();
   const { width, height, camera } = useThree((state) => ({
@@ -34,18 +36,23 @@ export function useAnchorModel({
 
     // compute parameter t in [0,1] relative to the threshold
     const localT = MathUtils.clamp(offset / scrollThreshold, 0, 1);
-    const offsetX = (localT * width) / 1.6;
-    const offsetY = (localT * -height) / 1.6;
-    head.position.x = MathUtils.lerp(head.position.x, offsetX, lerpAlpha);
-    head.position.y = MathUtils.lerp(head.position.y, offsetY, lerpAlpha);
-    const ndc = new Vector3(0.75, -0.75, 0);
-    ndc.unproject(camera);
-    ndc.z = head.position.z;
 
-    head.position.lerp(ndc, localT * lerpAlpha);
+    // move to offset x and y
+    if (moveToBottomRight) {
+      const offsetX = (localT * width) / 1.6;
+      const offsetY = (localT * -height) / 1.6;
+      head.position.x = MathUtils.lerp(head.position.x, offsetX, lerpAlpha);
+      head.position.y = MathUtils.lerp(head.position.y, offsetY, lerpAlpha);
+      const ndc = new Vector3(0.75, -0.75, 0);
+      ndc.unproject(camera);
+      ndc.z = head.position.z;
+      head.position.lerp(ndc, localT * lerpAlpha);
+    }
+
+    // Scale down
     if (offset >= scrollThreshold) {
       // scale down as we scroll past first page
-      const targetScale = uiFixedScale / 3;
+      const targetScale = uiFixedScale / (moveToBottomRight ? 3 : 2);
       head.scale.lerp(
         new Vector3(targetScale, targetScale, targetScale),
         lerpAlpha

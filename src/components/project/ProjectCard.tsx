@@ -20,6 +20,7 @@ function CardImage({ image }: { image: number | Media }) {
 
   return (
     <Image
+      preload
       alt={image.alt ?? ""}
       src={url ?? ""}
       width={width}
@@ -34,6 +35,7 @@ type ProjectCardProps = {
   title: string;
   image: number | Media;
   description?: string | null;
+  className?: string;
 };
 
 export function ProjectCard({
@@ -41,13 +43,14 @@ export function ProjectCard({
   title,
   image,
   description,
+  className,
 }: ProjectCardProps) {
   return (
-    <Link href={`/projects/${id}`}>
+    <Link href={`/projects/${id}`} className={className}>
       <Card
         variant="space"
         effect="glow"
-        className="sm:w-sm md:w-md cursor-pointer md:h-96 md:max-h-96 hover:border-gray-700"
+        className="sm:w-xs md:w-sm cursor-pointer md:h-96 md:max-h-96 hover:border-gray-700"
       >
         <CardContent className="grid gap-4">
           <CardImage image={image} />

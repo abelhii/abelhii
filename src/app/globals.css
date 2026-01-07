@@ -124,7 +124,16 @@
   }
 }
 
-svg * {
-  transform-box: fill-box;
-  transform-origin: center;
+.payload-richtext {
+  a {
+    color: theme("colors.blue.500");
+  }
+  a:hover {
+    color: theme("colors.blue.700");
+  }
+
+  ul {
+    list-style: disc;
+    margin-left: 1.5rem;
+  }
 }

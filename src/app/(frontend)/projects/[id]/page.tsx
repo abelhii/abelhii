@@ -1,9 +1,11 @@
+import {
+  RichText
+} from "@payloadcms/richtext-lexical/react";
 import Image from "next/image";
-import { RichText } from "@payloadcms/richtext-lexical/react";
 import { getPayload, Payload } from "payload";
 
-import payloadConfig from "@/payload.config";
 import { Media } from "@/payload-types";
+import payloadConfig from "@/payload.config";
 
 const getProject = async (payload: Payload, id: string) => {
   const projects = await payload.findByID({
@@ -36,11 +38,10 @@ export default async function Page({ params }: PageProps<"/projects/[id]">) {
   const project = await getProject(payload, id);
 
   return (
-    <div className="p-16 bg-amber-800 text-white min-h-screen">
+    <div className="p-16 bg-blue-50 min-h-screen">
       <div className="flex flex-col gap-4 mx-auto mb-8 max-w-2xl">
         <h1 className="text-5xl">{project.title}</h1>
         <ProjectImage image={project.headerImage} />
-        <p>{project.description}</p>
         {project.content && <RichText data={project.content} />}
       </div>
     </div>
