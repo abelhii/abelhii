@@ -24,7 +24,7 @@ function CardImage({ image }: { image: number | Media }) {
       src={url ?? ""}
       width={width}
       height={height}
-      className={`backdrop-blur-xs opacity-80 h-48 md:h-64 object-cover`}
+      className={`backdrop-blur-xs opacity-80 w-full h-32 md:h-52 object-cover rounded-sm`}
     />
   );
 }
@@ -47,11 +47,11 @@ export function ProjectCard({
       <Card
         variant="space"
         effect="glow"
-        className="w-xs sm:w-sm md:w-md cursor-pointer h-112 max-h-112 hover:border-gray-700"
+        className="sm:w-sm md:w-md cursor-pointer md:h-96 md:max-h-96 hover:border-gray-700"
       >
         <CardContent className="grid gap-4">
-          <CardTitle className="font-bold text-xl">{title}</CardTitle>
           <CardImage image={image} />
+          <CardTitle className="font-bold text-xl">{title}</CardTitle>
           <CardDescription className="overflow-hidden line-clamp-3">
             {description}
           </CardDescription>

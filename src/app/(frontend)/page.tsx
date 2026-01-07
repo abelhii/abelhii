@@ -53,10 +53,7 @@ export default function HomePage() {
           <Background />
           <Environment preset="sunset" />
           <ScrollControls pages={3} damping={0.1}>
-            <group>
-              <Scroll>{is3dOn && <Header3D />}</Scroll>
-              {is3dOn && <Abel3DControlled />}
-            </group>
+            <Header3D />
 
             <Scroll html>
               <SectionWrapper>{!is3dOn && <Header2D />}</SectionWrapper>
@@ -65,11 +62,13 @@ export default function HomePage() {
                 {projects && <ProjectCardList projects={projects} />}
               </SectionWrapper>
 
-              <div className="text-white">
-                <h1 className="absolute top-0">1</h1>
-                <h1 className="absolute top-[100vh]">2</h1>
-                <h1 className="absolute top-[200vh]">3</h1>
-              </div>
+              {isDebugging && (
+                <div className="text-white">
+                  <h1 className="absolute top-0">1</h1>
+                  <h1 className="absolute top-[100vh]">2</h1>
+                  <h1 className="absolute top-[200vh]">3</h1>
+                </div>
+              )}
             </Scroll>
           </ScrollControls>
         </Canvas>
