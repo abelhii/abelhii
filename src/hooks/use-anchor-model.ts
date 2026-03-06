@@ -2,13 +2,16 @@ import { useScroll } from "@react-three/drei";
 import { useFrame, useThree } from "@react-three/fiber";
 import { RefObject } from "react";
 import { Group, MathUtils, Object3DEventMap, Vector3 } from "three";
+import { lerp } from "three/src/math/MathUtils.js";
 
 type UseAnchorModelProps = {
   model: RefObject<Group<Object3DEventMap> | null>;
   lerpAlpha?: number;
   scrollThreshold?: number;
   uiFixedScale?: number; // size of model after scroll;
-  moveToBottomRight?: boolean;
+  repositionModel?: boolean;
+  endPos?: Vector3; // normalized device coordinates to anchor to
+  startPos?: Vector3; // starting position of the model
 };
 
 /**
@@ -19,7 +22,9 @@ export function useAnchorModel({
   lerpAlpha = 0.1,
   scrollThreshold = 0.5 / 3,
   uiFixedScale = 0.8,
-  moveToBottomRight = false,
+  repositionModel = false,
+  endPos = new Vector3(0.75, -0.75, 0),
+  startPos,
 }: UseAnchorModelProps) {
   const scroll = useScroll();
   const { width, height, camera } = useThree((state) => ({
@@ -28,7 +33,7 @@ export function useAnchorModel({
     camera: state.camera,
   }));
 
-  // move to bottom right of screen as we scroll down
+  // move to endPos and scale down as we scroll down
   useFrame(() => {
     if (!model.current || !scroll) return;
     const head = model.current;
@@ -38,31 +43,26 @@ export function useAnchorModel({
     const localT = MathUtils.clamp(offset / scrollThreshold, 0, 1);
 
     // move to offset x and y
-    if (moveToBottomRight) {
-      const offsetX = (localT * width) / 1.6;
-      const offsetY = (localT * -height) / 1.6;
-      head.position.x = MathUtils.lerp(head.position.x, offsetX, lerpAlpha);
-      head.position.y = MathUtils.lerp(head.position.y, offsetY, lerpAlpha);
-      const ndc = new Vector3(0.75, -0.75, 0);
+    if (repositionModel) {
+      if (startPos) head.position.copy(startPos);
+      // const offsetX = (localT * width) / 1.6;
+      // const offsetY = (localT * -height) / 1.6;
+      // head.position.x = MathUtils.lerp(head.position.x, offsetX, lerpAlpha);
+      // head.position.y = MathUtils.lerp(head.position.y, offsetY, lerpAlpha);
+      const ndc = endPos;
       ndc.unproject(camera);
       ndc.z = head.position.z;
-      head.position.lerp(ndc, localT * lerpAlpha);
+      head.position.lerpVectors(head.position, ndc, localT * lerpAlpha);
     }
 
     // Scale down
     if (offset >= scrollThreshold) {
       // scale down as we scroll past first page
-      const targetScale = uiFixedScale / (moveToBottomRight ? 3 : 2);
-      head.scale.lerp(
-        new Vector3(targetScale, targetScale, targetScale),
-        lerpAlpha
-      );
+      const targetScale = 0.4;
+      head.scale.lerp(new Vector3().setScalar(targetScale), 0.1);
     } else {
       // scale back to normal when on first page
-      head.scale.lerp(
-        new Vector3(uiFixedScale, uiFixedScale, uiFixedScale),
-        lerpAlpha
-      );
+      head.scale.lerp(new Vector3().setScalar(uiFixedScale), 0.1);
     }
   });
 }

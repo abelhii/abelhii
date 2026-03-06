@@ -11,10 +11,12 @@ import { useLerpedMouse } from "@/hooks/use-lerped-mouse";
 import { useSmoothReset } from "@/hooks/use-smooth-reset";
 import { isMobile } from "@/lib/is-mobile.utils";
 import { useGlobalStore } from "@/stores/use-global.store";
-import { Loader } from "../Loader";
-import { AbelAvatar3D } from "./AbelAvatar3D";
 
-export function Abel3DControlled() {
+import { Loader } from "../Loader";
+import { AbelAvatar3D, AbelAvatar3DProps } from "./AbelAvatar3D";
+import { useScaleAnimation } from "@/hooks/use-scale-animation";
+
+export function Abel3DControlled(props: AbelAvatar3DProps) {
   const headModel = useRef<Group<Object3DEventMap> | null>(null);
   const headWorld = useRef(new Vector3());
   const projected = useRef(new Vector3());
@@ -29,9 +31,9 @@ export function Abel3DControlled() {
   const { rotationFactor, lerpAlpha, uiFixedScale, resetDuration } =
     useControls("Abel Head", {
       rotationFactor: { value: 5, min: 1, max: 10, step: 1 },
-      lerpAlpha: { value: 0.1, min: 0, max: 1, step: 0.01 },
+      lerpAlpha: { value: 1, min: 0, max: 1, step: 0.01 },
       resetDuration: { value: 1.2, min: 0.05, max: 3, step: 0.01 },
-      uiFixedScale: { value: 1, min: 0.2, max: 2, step: 0.1 },
+      uiFixedScale: { value: 0.8, min: 0.2, max: 2, step: 0.1 },
     });
 
   const { camera } = useThree((state) => ({ camera: state.camera }));
@@ -73,17 +75,24 @@ export function Abel3DControlled() {
     head.rotation.x = MathUtils.lerp(head.rotation.x, dy * -rf, lerpAlpha);
   });
 
+  const startPos = props?.position
+    ? new Vector3().fromArray(props.position as number[])
+    : undefined;
+
   useAnchorModel({
     model: headModel,
     lerpAlpha,
     scrollThreshold,
     uiFixedScale,
+    repositionModel: true,
+    endPos: new Vector3(0, 0, 0),
+    startPos,
   });
 
   return (
     <ErrorBoundary fallback={<Text>Failed to load 3D model</Text>}>
       <Suspense fallback={<Loader />}>
-        <AbelAvatar3D ref={headModel} />
+        <AbelAvatar3D ref={headModel} {...props} />
       </Suspense>
       {!isMobile() && (
         <OrbitControls

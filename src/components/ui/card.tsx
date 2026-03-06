@@ -14,15 +14,16 @@ const cardVariants = cva(
         default: "bg-card shadow-sm",
         space:
           "text-white backdrop-blur-xs bg-gray-800/70 border-transparent",
+        sky: "bg-blue-50/70 border-transparent",
       },
       effect: {
-        glow: ''
+        glow: "",
       },
       defaultVariants: {
         variant: "default",
       },
     },
-  }
+  },
 );
 
 function Card({
@@ -37,6 +38,20 @@ function Card({
     if (effect !== "glow") return;
     if (!window || !card.current) return;
     const target = card.current;
+
+    if (variant === "space") {
+      target.style.setProperty(
+        "background",
+        `radial-gradient(circle at var(--mouse-x) var(--mouse-y), rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0) 80%)`,
+      );
+    }
+    
+    if (variant === "sky") {
+      target.style.setProperty(
+        "background",
+        `radial-gradient(circle at var(--mouse-x) var(--mouse-y), rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0) 80%)`,
+      );
+    }
 
     const mouseMove = (e: MouseEvent) => {
       const rect = target.getBoundingClientRect();
@@ -71,7 +86,7 @@ function CardHeader({ className, ...props }: React.ComponentProps<"div">) {
       data-slot="card-header"
       className={cn(
         "@container/card-header grid auto-rows-min grid-rows-[auto_auto] items-start gap-2 px-6 has-data-[slot=card-action]:grid-cols-[1fr_auto] [.border-b]:pb-6",
-        className
+        className,
       )}
       {...props}
     />
@@ -94,7 +109,7 @@ function CardDescription({ className, ...props }: React.ComponentProps<"div">) {
       data-slot="card-description"
       className={cn(
         "text-muted-foreground text-sm group-data-[variant=space]:text-white",
-        className
+        className,
       )}
       {...props}
     />
@@ -107,7 +122,7 @@ function CardAction({ className, ...props }: React.ComponentProps<"div">) {
       data-slot="card-action"
       className={cn(
         "col-start-2 row-span-2 row-start-1 self-start justify-self-end",
-        className
+        className,
       )}
       {...props}
     />
@@ -141,6 +156,5 @@ export {
   CardDescription,
   CardFooter,
   CardHeader,
-  CardTitle
+  CardTitle,
 };
-

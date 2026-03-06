@@ -14,7 +14,7 @@ export function NavItem({ ...props }: NavItemProps) {
     <Link
       {...props}
       className={cn(
-        "px-4 py-2 rounded-sm hover:bg-red-300/50",
+        "px-4 py-2 rounded-sm hover:bg-gray-300/50",
         props?.className
       )}
     />
@@ -29,9 +29,9 @@ type NavProps = {
 export function Nav({ children, className }: NavProps) {
   return (
     <nav className={className}>
-      <Card variant="space" effect="glow" className="p-4">
+      <Card variant="sky" effect="glow" className="p-4">
         <CardContent className="space-x-4 relative">
-          <Toggle3D className="mr-8 -translate-y-2 active:translate-y-0 data-[state=off]:translate-y-0" />
+          {/* <Toggle3D className="mr-8 -translate-y-2 active:translate-y-0 data-[state=off]:translate-y-0" /> */}
           {children}
         </CardContent>
       </Card>

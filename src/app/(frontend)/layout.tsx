@@ -21,7 +21,7 @@ export default async function RootLayout(props: { children: React.ReactNode }) {
       <body>
         <Providers>
           <main>
-            <Nav className="absolute m-8 top-0 z-10">
+            <Nav className="absolute m-8 top-0 z-20">
               <NavItem href="/">Home</NavItem>
             </Nav>
             {children}

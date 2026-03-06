@@ -10,8 +10,10 @@ type ProjectCardListProps = {
 };
 
 export function ProjectCardList({ projects }: ProjectCardListProps) {
+  if(!projects.docs) return null;
+
   return (
-    <div className="grid gap-8 px-8 justify-center z-10">
+    <div className="grid gap-8 px-8 justify-center">
       <h2 className="text-5xl font-bold">Projects</h2>
       <div
         className="
